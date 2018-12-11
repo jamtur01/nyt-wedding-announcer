@@ -15,7 +15,7 @@ function weighted(dict) {
   }
   return out
 }
-notes = {
+let notes = {
   // Noun Phrase. Singular. Synonyms of "bug".
   bug: [
     "bug",
