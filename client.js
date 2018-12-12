@@ -5,7 +5,8 @@
 // add other scripts at the bottom of index.html
 
 console.log('hello world :o');
-  
+
+// A helper function to weight some options in the Tracery grammar more heavily than others.
 function weighted(dict) {
   var out = []
   for (var key in dict) {
@@ -15,6 +16,8 @@ function weighted(dict) {
   }
   return out
 }
+
+// This is the Tracery grammar.
 let notes = {
   // Noun Phrase. Singular. Synonyms of "bug".
   bug: [
@@ -87,19 +90,26 @@ let notes = {
     "[MAC ONLY] #note#": 1
   })
 };
-    
-function myFunction() {
+
+
+
+function generate() {
   var myGrammar = tracery.createGrammar(notes);
+  
+  // Store away the default pluralize ".s" function.
   var old_pluralize = myGrammar.modifiers.s;
+  // Replace the pluralize ".s" function with a special variant.
   myGrammar.modifiers.s = function my_pluralize(to_modify) {
     // TODO: mass nouns
     if (to_modify == "crash") {
       return "crashes";
     } else {
+      // Delegate to the default one that we stored away.
       return old_pluralize(to_modify);
     }
   };
-  console.log(myGrammar);
+
+  // Generates 10 sample outputs from the grammar.
   var results = document.getElementById("results");
   while (results.hasChildNodes()) {  
       results.removeChild(results.firstChild);
@@ -109,6 +119,10 @@ function myFunction() {
     li.appendChild(document.createTextNode(myGrammar.flatten("#origin#")));
     results.appendChild(li);
   }
+
+  // Computes the "abundance" number rough estimate of how many unique outputs the grammar can generate.
+  a formula that biologists use to estimate how many birds are in 
+  
   var seenFirst = [];
   var effort = 10000;
   for (var i = 0; i < effort; i += 1) {
