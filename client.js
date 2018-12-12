@@ -121,8 +121,7 @@ function generate() {
   }
 
   // Computes the "abundance" number rough estimate of how many unique outputs the grammar can generate.
-  a formula that biologists use to estimate how many birds are in 
-  
+  // This uses a "mark and recapture" formula that biologists use to estimate, for example, bird populations.
   var seenFirst = [];
   var effort = 10000;
   for (var i = 0; i < effort; i += 1) {
