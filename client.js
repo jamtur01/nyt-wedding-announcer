@@ -145,10 +145,14 @@ function generate() {
   }
   var n = seenSecond.length;
   var li = document.createElement("li");
-  li.appendChild(document.createTextNode("abundance is " +
-                      Math.floor((K-1)*(n-1)/(k-2)) +
-                      " plus or minus " +
-                      Math.sqrt((K-1)*(n-1)*(K-k-1)*(n-k+1)/((k-2)*(k-2)*(k-3))).toPrecision(4)
-                      ));
+  if (n < 2) {
+    li.appendChild(document.createTextNode("abundance is approximately infinite"));
+  } else {
+    li.appendChild(document.createTextNode("abundance is " +
+                        Math.floor((K-1)*(n-1)/(k-2)) +
+                        " plus or minus " +
+                        Math.sqrt((K-1)*(n-1)*(K-k-1)*(n-k+1)/((k-2)*(k-2)*(k-3))).toPrecision(4)
+                        ));
+  }
   results.appendChild(li);
 };
