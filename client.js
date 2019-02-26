@@ -145,8 +145,10 @@ function generate() {
   }
   var n = seenSecond.length;
   var li = document.createElement("li");
-  if (n < 2) {
+  if (n <= 2) {
     li.appendChild(document.createTextNode("abundance is approximately infinite"));
+  } else if (n <= 3) {
+    li.appendChild(document.createTextNode("abundance is approximately " + Math.floor((K-1)*(n-1)/(k-2))));
   } else {
     li.appendChild(document.createTextNode("abundance is " +
                         Math.floor((K-1)*(n-1)/(k-2)) +
