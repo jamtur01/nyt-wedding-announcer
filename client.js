@@ -19,73 +19,54 @@ function weighted(dict) {
 
 // This is the Tracery grammar.
 let notes = {
-  // Noun Phrase. Singular. Synonyms of "bug".
-  bug: [
-    "bug",
-    "flaw",
-    "issue",
-    "tuning issue",
-    "reset",
-    "fault",
-    "glitch",
-    "defect",
+  subject: [
+    "Why I left New York",
+    "Why Aperol Spritz are no longer trendy",
+    "the Trouble with Tribbles"
+    "Why Game of Thrones Deserved "
   ],
-  // Prepositional Phrase. Something a Sim might do.
-  in_circumstance: [
-    "when they sit at the edge of a pool with a drink in hand",
-    "when travelling to the future",
-    "when switching between floors of a house",
-    "#in_circumstance# #in_circumstance#",
+  // Adjective. Describes the writer's work.
+  great: [
+    "great",
+    "substantial",
+    "novel",
+    "impressive",
+    "lengthy",
+    "troubling",
+    "consummately crafted",
+    "erstwhile",
+    "euphemistic",
+    "deeply thoughtful"
   ],
-  // Noun Phrase. Singular. In-game object.
-  object: [
-    "time portal",
-    "chair",
-    "diploma",
-    "toilet",
+  success: [
+    "the most success",
+    "the least success",
+    "success",
+    "good luck"
+    "find more time with"
   ],
-  // Verb. A bad thing for an in-game object to do.
-  behave_badly: [
-    "disappear",
-    "overflow",
+  essay: [
+    "feature essay"
   ],
-  // Infinitive. A bad thing for a Sim to do.
-  to_behave_badly: [
-    "to disappear",
-    "to scratch their back with their elbows",
+  appreciation: [
+    "fond appreciation",
+    "appreciation",
+    "mild interest",
   ],
-  // Sentence. A good thing.
-  user_story: [
-    "Users can install and uninstall custom content in their game.",
-  ],
-  // Noun Phrase. Plural. Quite unusual kinds and categories of Sims.
-  unusual_sims: [
-    "Magicians",
-    "Vampires",
-    "Werewolves",
-  ],
-  // Noun Phrase. Plural. Various kinds and categories of Sims.
-  sims: [
-    "Sims",
-    "Self-Employed Sims",
-    "Children",
-    "Toddlers",
-    "#unusual_sims#",
-  ],
-  note: [
-    "Fixed #bug.a# so that #sims# now vomit at acceptable levels.",
-    "Fixed #bug.a# caused by setting the alarm for #sims#.",
-    "Fixed #bug.a# where #object.s# could be stolen or reposessed.",
-    "#unusual_sims# re-enabled.",
-
-    "Fixed #bug.a# that caused #sims# #to_behave_badly# #in_circumstance#.",
-
-    "The #object.capitalize# will no longer #behave_badly# #in_circumstance#.",
-    "#sims# will no longer sit on #object.s# that are no longer present.",
-    "#user_story#",
+  another_publisher: [
+    "another publisher more suited to your writing",
+    "making your rent",
+    "your plans to retire early"
+    "discovering another hobby"
+    "learning about your better skills"
   ],
   origin: [
-    "We are sending this letter to communicate our fond appreciation for your feature essay about #subject#. It is with great pleasure that we must reject your great work, and wish you the most success with another publisher more suited to your writing."
+    `
+We are sending this letter to communicate our #appreciation#
+for your feature essay titled, \"#subject#\". It is with great pleasure that
+we must reject your #great# work, and wish you #success# with
+#another_publisher# .
+`
   ]
 };
 
