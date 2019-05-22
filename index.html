@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>rejection letter💟💟💟 generator</title>
+    <title>procedural rejection letter generator</title>
     <meta name="description" content="A cool thing made with Glitch and Tracery">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
@@ -11,13 +11,15 @@
   </head>
   <body>
     <header>
-      <h1>Margarita's rejection letter generator</h1>
+      <h1>Procedurally generated rejection letters</h1>
     </header>
     <main>
-      <p id="output">Generate your random rejection letter!</p>
+      <p>Generate a very personal rejection letter!</p>
       <button onclick="generate()">Generate!</button>
-      <ul id="results">
-      </ul>
+      <div id="resultsContainer">
+        <div id="results">
+        </div>
+      </div>
     </main>
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="

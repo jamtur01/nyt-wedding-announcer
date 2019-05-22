@@ -1,10 +1,4 @@
-// client-side js
-// run by the browser each time your view template is loaded
-
-// by default, you've got jQuery,
-// add other scripts at the bottom of index.html
-
-console.log('hello world :o');
+/* global tracery */
 
 // A helper function to weight some options in the Tracery grammar more heavily than others.
 function weighted(dict) {
@@ -70,7 +64,7 @@ let notes = {
     "appreciation",
     "mild interest",
     "tired acquiescence",
-    "average",
+    "average interest",
   ],
   another_publisher: [
     "another publisher more suited to your writing",
@@ -81,17 +75,24 @@ let notes = {
     "taking up rowing",
   ],
   someone: [
-    "Someone you'll never meet"
-    "Your former colleage roommate"
+    "Someone you'll never meet",
+    "Your former colleage roommate",
+    "Your former editor",
   ],
   origin: [
     `
+<p>
 We are sending this letter to communicate our #appreciation#
-for your #essay# titled, \"#subject#\". It is with great pleasure that
+for your #essay# titled, \"#subject#\".
+</p>
+<br>
+It is with great pleasure that
 we must reject your #great# work, and wish you #success# with
-#another_publisher# .
-
+#another_publisher#.
+<br>
+<br>
 Sincerely,
+<br>
 #someone#
 `
   ]
@@ -104,12 +105,6 @@ function generate() {
   
   // Generates 1 sample outputs from the grammar.
   var results = document.getElementById("results");
-  while (results.hasChildNodes()) {  
-      results.removeChild(results.firstChild);
-  }
-  for (var i = 0; i < 1; i += 1) {
-    var li = document.createElement("li");
-    li.appendChild(document.createTextNode(myGrammar.flatten("#origin#")));
-    results.appendChild(li);
-  }
+ 
+  results.innerHTML = myGrammar.flatten("#origin#");
 };

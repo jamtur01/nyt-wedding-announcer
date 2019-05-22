@@ -80,3 +80,17 @@ footer > a {
 .nicejob {
   text-decoration: line-through;
 }
+
+#resultsContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+#results {
+  text-indent: 25px;
+  max-width: 300px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+  font-family: "Times New Roman", Times, serif;
+}
