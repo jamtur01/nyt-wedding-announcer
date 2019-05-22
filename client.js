@@ -84,11 +84,9 @@ let notes = {
     "#sims# will no longer sit on #object.s# that are no longer present.",
     "#user_story#",
   ],
-  origin: weighted({
-    "#note#": 10,
-    "[UNDOCUMENTED] #note#": 1,
-    "[MAC ONLY] #note#": 1
-  })
+  origin: [
+    "We are sending this letter to communicate our fond appreciation for your feature essay about #subject#. It is with great pleasure that we must reject your great work, and wish you the most success with another publisher more suited to your writing."
+  ]
 };
 
 
