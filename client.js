@@ -20,7 +20,7 @@ let notes = {
     "hip-hop",
   ],
   subject: [
-    "Why I left New York",
+    "Why I Left New York",
     "Why Aperol Spritz Are No Longer Trendy",
     "The Trouble With Tribbles",
     "Why Game Of Thrones Fans Deserved A Better Ending",
@@ -85,15 +85,17 @@ let notes = {
 We are sending this letter to communicate our #appreciation#
 for your #essay# titled, \"#subject#\".
 </p>
-<br>
+<p>
 It is with great pleasure that
 we must reject your #great# work, and wish you #success# with
 #another_publisher#.
-<br>
-<br>
+</p>
+<p>
 Sincerely,
-<br>
+</p>
+<p>
 #someone#
+</p>
 `
   ]
 };
@@ -101,6 +103,8 @@ Sincerely,
 
 
 function generate() {
+  var resultsContainer = document.getElementById("resultsContainer");
+  resultsContainer.innerHTML = "<div id=\"results\"></div>";
   var myGrammar = tracery.createGrammar(notes);
   
   // Generates 1 sample outputs from the grammar.
