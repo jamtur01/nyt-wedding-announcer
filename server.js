@@ -95,7 +95,8 @@ const brideDad = uniqueNamesGenerator(names_config);
 const groomName = uniqueNamesGenerator(names_config);
 const groomDad = uniqueNamesGenerator(names_config);
 const groomMum = uniqueNamesGenerator(names_config);
-const state = 
+const state = uniqueNamesGenerator(state_config);
+
 const age = (Math.floor(Math.random() * 100) + 17).toString();
 
 // This is the Tracery grammar.
