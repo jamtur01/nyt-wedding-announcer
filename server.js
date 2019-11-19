@@ -139,12 +139,8 @@ function generate() {
   results.innerHTML = myGrammar.flatten("#origin#");
 };
 
+app.use('/assets', express.static('assets'))
 app.use(express.static(path.join(__dirname+ "/public")));
-
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
