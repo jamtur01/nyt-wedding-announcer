@@ -6,15 +6,25 @@ var path = require('path');
 var tracery = require('tracery-grammar');
 var bodyParser = require('body-parser')
 
-const { uniqueNamesGenerator, Config, names } = require('unique-names-generator');
+const { uniqueNamesGenerator, names, starWars, colors, animals } = require('unique-names-generator');
+
+const config = {
+  dictionaries: [names, starWars, colors, animals],
+  length: 2,
+  separator: ' ',
+  style: 'capital'
+}
+
+const brideName = uniqueNamesGenerator(config);
+const groomName = uniqueNamesGenerator(config);
 
 // This is the Tracery grammar.
 let notes = {
   bride: [
-    "bride's name",
+    brideName,
   ],
   groom: [
-    "groom's name",
+    groomName,
   ],
   age: [
     "age"
