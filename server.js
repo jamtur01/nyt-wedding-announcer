@@ -141,15 +141,14 @@ function generate() {
   results.innerHTML = myGrammar.flatten("#origin#");
 };
 
-app.use(bodyParser.urlencoded({ extended: false }))
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use('/assets', express.static('assets'))
 app.use(express.static(path.join(__dirname+ "/public")));
 
-app.post('/', function(req, res) {
-  console.log(req.body);
-  res.send(200);
-});
+app.post('/', urlencodedParser, function (req, res) {
+  res.send('welcome, ' + req.body.username)
+})
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
