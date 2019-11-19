@@ -1,17 +1,10 @@
 /* global tracery */
 
-import { uniqueNamesGenerator, Config, names } from 'unique-names-generator';
+var express = require('express');
+var app = express();
+var path = require('path');
 
-// A helper function to weight some options in the Tracery grammar more heavily than others.
-function weighted(dict) {
-  var out = []
-  for (var key in dict) {
-    for (var i = 0; i < dict[key]; i++) {
-      out.push(key)
-    }
-  }
-  return out
-}
+const { uniqueNamesGenerator, Config, names } = require('unique-names-generator');
 
 // This is the Tracery grammar.
 let notes = {
@@ -124,7 +117,16 @@ let notes = {
   ]
 };
 
-
+// A helper function to weight some options in the Tracery grammar more heavily than others.
+function weighted(dict) {
+  var out = []
+  for (var key in dict) {
+    for (var i = 0; i < dict[key]; i++) {
+      out.push(key)
+    }
+  }
+  return out
+}
 
 function generate() {
   var resultsContainer = document.getElementById("resultsContainer");
@@ -136,3 +138,12 @@ function generate() {
  
   results.innerHTML = myGrammar.flatten("#origin#");
 };
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+// listen for requests :)
+var listener = app.listen(process.env.PORT, function () {
+  console.log('Your app is listening on port ' + listener.address().port);
+});
