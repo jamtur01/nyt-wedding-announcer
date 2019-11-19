@@ -79,23 +79,33 @@ let notes = {
     "Your former colleage roommate",
     "Your former editor",
   ],
+  bride: [
+    "bride's name",
+  ],
+  groom: [
+    "groom's name",
+  ],
+  place: [
+    "place",
+  ],
+  location: [
+    "location",
+  ],
+  
   origin: [
     `
 <p>
-We are sending this letter to communicate our #appreciation#
-for your #essay# titled, \"#subject#\".
-</p>
-<p>
-It is with great pleasure that
-we must reject your #great# work, and wish you #success# with
-#another_publisher#.
-</p>
-<p>
-Sincerely,
-</p>
-<p>
-#someone#
-</p>
+#bride# and #groom# were married Nov. 16 at the #place# in #location#. Rory Team, a friend of the couple who became a Universal Life minister for the event, officiated.
+
+The bride, #age#, is a middle school science teacher at 75 Morton in New York, and is a former Teach for America corps member. She graduated from Agnes Scott College in Decatur, Ga., and received a master’s degree in teaching secondary biology at Fordham.
+    
+She is the daughter of Dana S. Bello and Ariel Bello of Carlsbad, Calif. The bride’s father is a captain for United Airlines and is based in Los Angeles. Her mother retired as a Los Angeles-based flight attendant.
+    
+The groom, also #age#, is a project manager and architectural designer at BuiltIN Studio, an architectural firm in New York. He graduated from California Polytechnic State University, San Luis Obispo.
+    
+He is a son of Leslie K. Venolia and Craig A. Landau, also of Carlsbad. The groom’s mother is a Carlsbad-based freelance technical writer and editor, and a former newspaper editor at The San Diego Reader. His father, who works remotely from Carlsbad, is an area manager and sales representative of Associated Ready Mixed Concrete.
+    
+The couple met #wheremet# at #whereplace# in #wherelocation#.
 `
   ]
 };
