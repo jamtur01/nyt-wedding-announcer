@@ -13,75 +13,13 @@ function weighted(dict) {
 
 // This is the Tracery grammar.
 let notes = {
-  thing: [
-    "tunafish",
-    "peanut butter",
-    "Coney Island",
-    "hip-hop",
-  ],
-  subject: [
-    "Why I Left New York",
-    "Why Aperol Spritz Are No Longer Trendy",
-    "The Trouble With Tribbles",
-    "Why Game Of Thrones Fans Deserved A Better Ending",
-    "Fedoras Return, And To Stay",
-    "Consider The Lobster's Cousin",
-    "#thing.capitalize# Considered Harmful"
-  ],
-  // Adjective. Describes the writer's work.
-  great: [
-    "great",
-    "substantial",
-    "novel",
-    "impressive",
-    "lengthy",
-    "troubling",
-    "consummately crafted",
-    "erstwhile",
-    "euphemistic",
-    "deeply thoughtful",
-    "at times terrifyingly simplistic",
-    "incredibly self-centered",
-    "baffling",
-    "slightly boring",
-  ],
-  success: [
-    "the most success",
-    "the least success",
-    "success",
-    "good luck",
-    "find more time with",
-  ],
-  essay: [
-    "essay",
-    "feature essay",
-    "article",
-    "monograph",
-    "epigram"
-  ],
-  appreciation: [
-    "fond appreciation",
-    "appreciation",
-    "mild interest",
-    "tired acquiescence",
-    "average interest",
-  ],
-  another_publisher: [
-    "another publisher more suited to your writing",
-    "making your rent",
-    "your plans to retire early",
-    "discovering another hobby",
-    "learning about your better skills",
-    "taking up rowing",
-  ],
-  someone: [
-    "Someone you'll never meet",
-    "Your former colleage roommate",
-    "Your former editor",
-  ],
-  bride: [
+  bridefirst: [
     "bride's name",
   ],
+  bridefirst: [
+    "bride's name",
+  ],
+
   groom: [
     "groom's name",
   ],
