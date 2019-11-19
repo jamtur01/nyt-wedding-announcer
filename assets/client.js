@@ -1,7 +1,7 @@
 $(function(){
   $('.gen-btn').on('click', function() {
-    $.post( '/', function() {
-      console.log("whee!")
+    $.get( '/announce', function(data) {
+      $('#resultsContainer').html(data);
     });
     console.log("whee!")
   });

@@ -131,14 +131,9 @@ function weighted(dict) {
 }
 
 function generate() {
-  var resultsContainer = document.getElementById("resultsContainer");
-  resultsContainer.innerHTML = "<div id=\"results\"></div>";
   var myGrammar = tracery.createGrammar(notes);
-  
-  // Generates 1 sample outputs from the grammar.
-  var results = document.getElementById("results");
- 
-  results.innerHTML = myGrammar.flatten("#origin#");
+  var results = myGrammar.flatten;
+  return results;
 };
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -146,8 +141,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use('/assets', express.static('assets'))
 app.use(express.static(path.join(__dirname + "/public")));
 
-app.post('/', urlencodedParser, function (req, res) {
-  var announcement = generate()
+app.get('/announce', urlencodedParser, function (req, res) {
+  var announcement = generate();
   res.send(announcement);
 })
 
