@@ -148,6 +148,7 @@ app.use(express.static(path.join(__dirname+ "/public")));
 
 app.post('/', urlencodedParser, function (req, res) {
   res.send('welcome, ' + req.body.username)
+  generate()
 })
 
 // listen for requests :)
