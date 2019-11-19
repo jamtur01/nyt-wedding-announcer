@@ -85,6 +85,9 @@ let notes = {
   groom: [
     "groom's name",
   ],
+  age: [
+    "age"
+  ],
   place: [
     "place",
   ],
@@ -148,20 +151,36 @@ let notes = {
   groomplace: [
     "blah",
   ],
+  groommotherjob: [
+    "blah",
+  ],
+  groomfatherjob: [
+    "blah",
+  ],
+  wheremet: [
+    "blah",
+  ],
+  whereplace: [
+    "blah",
+  ],
+  wherelocation: [
+    "blah",
+  ],
   origin: [
-    `
-<p>
-#bride# and #groom# were married Nov. 16 at the #place# in #location#. #officant#, #offrel# of the couple, officiated.
+`
+<h2>#bride#, #groom#</h2>
 
-The bride, #age#, is a #bridejob# in #bridplace#, and is a #brideformer#. She graduated from #bridegrad#, and received a #bridepostgrad#.
+<p>#bride# and #groom# were married Nov. 16 at the #place# in #location#. #officant#, #offrel# of the couple, officiated.</p>
+
+<p>The bride, #age#, is a #bridejob# in #bridplace#, and is a #brideformer#. She graduated from #bridegrad#, and received a #bridepostgrad#.</p>
+
+<p>#bridegender# is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father is #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
     
-#bridegender# is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father is #bridefatherjob# and the bride's mother is a #bridemotherjob#.
+<p>The groom, also #age#, is #groomjob#. He graduated from #groomgrad#.</p>
     
-The groom, also #age#, is #groomjob#. He graduated from #groomgrad#.
+<p>The groom is the #groomgender# of #groommum# and #groomdad# of #groomplace#. The groom’s mother is #groommotherjob# and the groom's father is #groomfatherjob#.</p>
     
-The groom is the #groomgender# of #groommum# and #groomdad# of #groomplace#. The groom’s mother is , and a former newspaper editor at The San Diego Reader. His father, who works remotely from Carlsbad, is an area manager and sales representative of Associated Ready Mixed Concrete.
-    
-The couple met #wheremet# at #whereplace# in #wherelocation#.
+<p>The couple met #wheremet# at #whereplace# in #wherelocation#.</p>
 `
   ]
 };
