@@ -1,0 +1,14 @@
+{
+  "name": "nyt-wedding-announcement-generator",
+  "version": "0.0.1",
+  "description": "",
+  "main": "client.js",
+  "dependencies": {
+    "unique-names-generator": "4.1.1"
+   },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch"
+  ]
+}

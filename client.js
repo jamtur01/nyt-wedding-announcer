@@ -1,5 +1,7 @@
 /* global tracery */
 
+import { uniqueNamesGenerator, Config, names } from 'unique-names-generator';
+
 // A helper function to weight some options in the Tracery grammar more heavily than others.
 function weighted(dict) {
   var out = []
@@ -19,7 +21,6 @@ let notes = {
   bridefirst: [
     "bride's name",
   ],
-
   groom: [
     "groom's name",
   ],
