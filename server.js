@@ -144,11 +144,11 @@ function generate() {
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use('/assets', express.static('assets'))
-app.use(express.static(path.join(__dirname+ "/public")));
+app.use(express.static(path.join(__dirname + "/public")));
 
 app.post('/', urlencodedParser, function (req, res) {
-  res.send('welcome, ' + req.body.username)
-  generate()
+  var announcement = generate()
+  res.send(announcement);
 })
 
 // listen for requests :)
