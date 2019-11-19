@@ -10,10 +10,7 @@ const { uniqueNamesGenerator, Config, names } = require('unique-names-generator'
 
 // This is the Tracery grammar.
 let notes = {
-  bridefirst: [
-    "bride's name",
-  ],
-  bridefirst: [
+  bride: [
     "bride's name",
   ],
   groom: [
@@ -102,6 +99,7 @@ let notes = {
   ],
   origin: [
 `
+<div id=\"results\">
 <h2>#bride#, #groom#</h2>
 
 <p>#bride# and #groom# were married Nov. 16 at the #place# in #location#. #officant#, #offrel# of the couple, officiated.</p>
@@ -115,25 +113,15 @@ let notes = {
 <p>The groom is the #groomgender# of #groommum# and #groomdad# of #groomplace#. The groom’s mother is #groommotherjob# and the groom's father is #groomfatherjob#.</p>
     
 <p>The couple met #wheremet# at #whereplace# in #wherelocation#.</p>
+</div>
 `
   ]
 };
 
-// A helper function to weight some options in the Tracery grammar more heavily than others.
-function weighted(dict) {
-  var out = []
-  for (var key in dict) {
-    for (var i = 0; i < dict[key]; i++) {
-      out.push(key)
-    }
-  }
-  return out
-}
-
 function generate() {
   var myGrammar = tracery.createGrammar(notes);
-  var results = myGrammar.flatten;
-  return results;
+  var results = myGrammar.flatten('#origin#');
+  return results
 };
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
