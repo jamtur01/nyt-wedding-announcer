@@ -91,19 +91,75 @@ let notes = {
   location: [
     "location",
   ],
-  
+  officant: [
+    "officant",
+  ],
+  offrel: [
+    "offrel",
+  ],
+  bridejob: [
+    "bride job",
+  ],
+  bridplace: [
+    "bride's work",
+  ],
+  brideformer: [
+    "bride's former job",
+  ],
+  bridegrad: [
+    "bride's degree",
+  ],
+  bridepostgrad: [
+    "bride's postgrad",
+  ],
+  bridegender: [
+    "gender",
+  ],
+  bridemum: [
+    "blah",
+  ],
+  bridedad: [
+    "blah"
+  ],
+  brideplace: [
+    "blah place",
+  ],
+  bridefatherjob: [
+    "location",
+  ],
+  bridemotherjob: [
+    "location",
+  ],
+  groomjob: [
+    "location",
+  ],
+  groomgrad: [
+    "location",
+  ],
+  groomgender: [
+    "blah",
+  ],
+  groommum: [
+    "blah",
+  ],
+  groomdad: [
+    "blah",
+  ],
+  groomplace: [
+    "blah",
+  ],
   origin: [
     `
 <p>
-#bride# and #groom# were married Nov. 16 at the #place# in #location#. Rory Team, a friend of the couple who became a Universal Life minister for the event, officiated.
+#bride# and #groom# were married Nov. 16 at the #place# in #location#. #officant#, #offrel# of the couple, officiated.
 
-The bride, #age#, is a middle school science teacher at 75 Morton in New York, and is a former Teach for America corps member. She graduated from Agnes Scott College in Decatur, Ga., and received a master’s degree in teaching secondary biology at Fordham.
+The bride, #age#, is a #bridejob# in #bridplace#, and is a #brideformer#. She graduated from #bridegrad#, and received a #bridepostgrad#.
     
-She is the daughter of Dana S. Bello and Ariel Bello of Carlsbad, Calif. The bride’s father is a captain for United Airlines and is based in Los Angeles. Her mother retired as a Los Angeles-based flight attendant.
+#bridegender# is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father is #bridefatherjob# and the bride's mother is a #bridemotherjob#.
     
-The groom, also #age#, is a project manager and architectural designer at BuiltIN Studio, an architectural firm in New York. He graduated from California Polytechnic State University, San Luis Obispo.
+The groom, also #age#, is #groomjob#. He graduated from #groomgrad#.
     
-He is a son of Leslie K. Venolia and Craig A. Landau, also of Carlsbad. The groom’s mother is a Carlsbad-based freelance technical writer and editor, and a former newspaper editor at The San Diego Reader. His father, who works remotely from Carlsbad, is an area manager and sales representative of Associated Ready Mixed Concrete.
+The groom is the #groomgender# of #groommum# and #groomdad# of #groomplace#. The groom’s mother is , and a former newspaper editor at The San Diego Reader. His father, who works remotely from Carlsbad, is an area manager and sales representative of Associated Ready Mixed Concrete.
     
 The couple met #wheremet# at #whereplace# in #wherelocation#.
 `
