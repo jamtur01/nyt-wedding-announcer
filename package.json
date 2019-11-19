@@ -8,8 +8,9 @@
   },
   "dependencies": {
     "unique-names-generator": "4.1.1",
-    "express": "^4.15.2"
-   },
+    "express": "^4.15.2",
+    "tracery-grammar": "^2.7.4"
+  },
   "license": "MIT",
   "keywords": [
     "node",
