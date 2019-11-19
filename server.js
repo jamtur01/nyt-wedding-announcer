@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var tracery = require('tracery-grammar');
+var bodyParser = require('body-parser')
 
 const { uniqueNamesGenerator, Config, names } = require('unique-names-generator');
 
@@ -140,8 +141,15 @@ function generate() {
   results.innerHTML = myGrammar.flatten("#origin#");
 };
 
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use('/assets', express.static('assets'))
 app.use(express.static(path.join(__dirname+ "/public")));
+
+app.post('/', function(req, res) {
+  console.log(req.body);
+  res.send(200);
+});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
