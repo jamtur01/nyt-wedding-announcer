@@ -26,8 +26,12 @@ const ivy = [
   "Stanford"
 ];
 
+const places_met = [
+  'Tinder', 'a college reunion', 'boating', 'college', 'summering in the Hamptons', 'a bar', 'a restaurant', 'Whole Foods', 'leaf peeping', 'trick or treating', 'a pottery class', 'a poetry reading', 'an experimental interpretative dance experience'
+]
+
 const places = [
-  'college', 'summering in the Hamptons', 'a bar', 'a restaurant', 'Whole Foods', 'leaf peeping', 'trick or treating', 'a pottery class', 'a poetry reading', 'an experimental interpretative dance experience'
+  'Mandarin Oriental hotel', 'Beverly Hills Hotel', 'Ace Hotel', 'Waldorf-Astoria', "the brides family summer home in Nantucket", 'United Methodist Church'
 ]
 
 const offrel = [
@@ -40,7 +44,12 @@ const ivy_config = {
   style: "capital"
 };
 
-const place_config = {
+const placemet_config = {
+  dictionaries: [places_met],
+  length: 1,
+};
+
+const places_config = {
   dictionaries: [places],
   length: 1,
 };
@@ -67,10 +76,10 @@ var groomFatherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
 var groomMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
 var groomPlace = fakerator.populate("#{address.city}");
 var state = faker.address.state();
-var age = (Math.floor(Math.random() * 30) + 19).toString();
+var age = (Math.floor(Math.random() * 30) + 21).toString();
 var officiant = fakerator.names.nameM();
 var offRelationship = uniqueNamesGenerator(offrel_config);
-var wherePlace = uniqueNamesGenerator(place_config);
+var wherePlace = uniqueNamesGenerator(placemet_config);
 var whereLocation = fakerator.populate("#{address.city}");
 
 // This is the Tracery grammar.
@@ -113,9 +122,9 @@ let notes = {
 
 <p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. She graduated from #bridegrad#, and received a #bridepostgrad#.</p>
 
-<p>#bridegender# is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father is #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
+<p>#bridegender# is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
     
-<p>The groom, also #age#, is #groomjob#. He graduated from #groomgrad#.</p>
+<p>The groom, also #age#, is #groomjob#. He graduated magna cum laude from #groomgrad#.</p>
     
 <p>The groom is the #groomgender# of #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
