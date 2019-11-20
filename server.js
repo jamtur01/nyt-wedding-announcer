@@ -6,103 +6,52 @@ var path = require("path");
 var tracery = require("tracery-grammar");
 var bodyParser = require("body-parser");
 
-var faker = require('faker');
+var faker = require("faker");
 
 var Fakerator = require("fakerator");
 var fakerator = Fakerator();
 
-const {
-  uniqueNamesGenerator,
-  names,
-  colors,
-  animals
-} = require("unique-names-generator");
+const { uniqueNamesGenerator } = require("unique-names-generator");
 
-
-const states = [
-  "Alabama",
-  "Alaska",
-  "American Samoa",
-  "Arizona",
-  "Arkansas",
-  "California",
-  "Colorado",
-  "Connecticut",
-  "Delaware",
-  "District of Columbia",
-  "Federated States of Micronesia",
-  "Florida",
-  "Georgia",
-  "Guam",
-  "Hawaii",
-  "Idaho",
-  "Illinois",
-  "Indiana",
-  "Iowa",
-  "Kansas",
-  "Kentucky",
-  "Louisiana",
-  "Maine",
-  "Marshall Islands",
-  "Maryland",
-  "Massachusetts",
-  "Michigan",
-  "Minnesota",
-  "Mississippi",
-  "Missouri",
-  "Montana",
-  "Nebraska",
-  "Nevada",
-  "New Hampshire",
-  "New Jersey",
-  "New Mexico",
-  "New York",
-  "North Carolina",
-  "North Dakota",
-  "Ohio",
-  "Oklahoma",
-  "Oregon",
-  "Palau",
-  "Pennsylvania",
-  "Puerto Rico",
-  "Rhode Island",
-  "South Carolina",
-  "South Dakota",
-  "Tennessee",
-  "Texas",
-  "Utah",
-  "Vermont",
-  "Virgin Island",
-  "Virginia",
-  "Washington",
-  "West Virginia",
-  "Wisconsin",
-  "Wyoming"
+const ivy = [
+  "Brown",
+  "Columbia",
+  "Cornell",
+  "Dartmouth",
+  "Harvard",
+  "the University of Pennsylvania",
+  "Princeton",
+  "Yale",
+  "NYU",
+  "Stanford"
 ];
 
-const state_config = {
-  dictionaries: [states],
+const 
+const ivy_config = {
+  dictionaries: [ivy],
   length: 1,
   style: "capital"
-}
+};
 
-var brideName = fakerator.names.nameF()
-var brideMum = fakerator.names.nameF()
-var brideDad = fakerator.names.nameM()
-var brideJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
-var brideFormerJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
-var brideMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
-var brideFatherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
-var bridePlace = fakerator.populate("#{address.city}")
-var groomName = fakerator.names.nameM()
-var groomDad = fakerator.names.nameM()
-var groomMum = fakerator.names.nameF()
-var groomJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
-var groomFatherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
-var groomMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
-var groomPlace = fakerator.populate("#{address.city}")
-var state = faker.address.state()
+var brideName = fakerator.names.nameF();
+var brideMum = fakerator.names.nameF();
+var brideDad = fakerator.names.nameM();
+var brideJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
+var brideFormerJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
+var brideMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
+var brideFatherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
+var bridePlace = fakerator.populate("#{address.city}");
+var groomName = fakerator.names.nameM();
+var groomGrad = uniqueNamesGenerator(ivy_config);
+var groomDad = fakerator.names.nameM();
+var groomMum = fakerator.names.nameF();
+var groomJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
+var groomFatherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
+var groomMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
+var groomPlace = fakerator.populate("#{address.city}");
+var state = faker.address.state();
 var age = (Math.floor(Math.random() * 30) + 19).toString();
+var where
 
 // This is the Tracery grammar.
 let notes = {
@@ -125,7 +74,7 @@ let notes = {
   bridefatherjob: [brideFatherJob],
   bridemotherjob: [brideMotherJob],
   groomjob: [groomJob],
-  groomgrad: ["location"],
+  groomgrad: [groomGrad],
   groomgender: ["blah"],
   groommum: [groomMum],
   groomdad: [groomDad],
@@ -170,7 +119,7 @@ app.use(express.static(path.join(__dirname + "/public")));
 app.get("/announce", urlencodedParser, function(req, res) {
   var announcement = generate();
   res.send(announcement);
-  announcement = ''
+  announcement = "";
 });
 
 // listen for requests :)
