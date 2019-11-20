@@ -4,7 +4,6 @@ var express = require("express");
 var app = express();
 var path = require("path");
 var tracery = require("tracery-grammar");
-var bodyParser = require("body-parser");
 
 var faker = require("faker");
 
@@ -175,13 +174,13 @@ let notes = {
 
 <p>#bride# and #groom# were married Nov. 16 at the #place# in #state#. #officant#, #offrel# of the couple, officiated.</p>
 
-<p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. She graduated from #bridegrad#, and also received #bridepostgrad# from #bridegrad2#.</p>
+<p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. They graduated from #bridegrad#, and also received #bridepostgrad# from #bridegrad2#.</p>
 
-<p>The bride is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
+<p>The bride's parents are #bridemum# and #bridedad# of #brideplace#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
     
-<p>The groom, also #age#, is #groomjob#. He graduated magna cum laude from #groomgrad#.</p>
+<p>The groom, also #age#, is #groomjob#. They graduated magna cum laude from #groomgrad#.</p>
     
-<p>The groom is the son of #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
+<p>The groom's parents are #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
 <p>The couple first met #whereplace# in #wherelocation# but didn't hit it off. A later meeting #whereplace2# in #wherelocation2# proved more fruitful and the couple have been dating since 2017.</p>
 </div>
@@ -195,13 +194,14 @@ function generate() {
   return results;
 }
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use(express.static('public'));
 
-app.use("/assets", express.static("assets"));
-app.use(express.static(path.join(__dirname + "/public")));
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/views/index.html');
+});
 
-app.get("/announce", urlencodedParser, function(req, res) {
-  return res.send(generate());
+app.get("/announce", function(req, res) {
+  res.send(generate());
 });
 
 // listen for requests :)
