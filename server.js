@@ -27,21 +27,60 @@ const ivy = [
 ];
 
 const places_met = [
-  'on the dating app JSwipe', 'on the dating app Hinge', 'at a mutual friend’s birthday party', 'on OkCupid', 'via a mutual friend', 'at a wedding', 'on Tinder', 'at a college reunion', 'boating', 'at college', 'while summering in the Hamptons', 'at a bar', 'at a restaurant', 'at Whole Foods', 'leaf peeping', 'trick or treating', 'at a pottery class', 'at a poetry reading', 'at an experimental interpretative dance experience'
-]
+  "on the dating app JSwipe",
+  "on the dating app Hinge",
+  "at a mutual friend’s birthday party",
+  "on OkCupid",
+  "via a mutual friend",
+  "at a wedding",
+  "on Tinder",
+  "at a college reunion",
+  "boating",
+  "at college",
+  "while summering in the Hamptons",
+  "at a bar",
+  "at a restaurant",
+  "at Whole Foods",
+  "leaf peeping",
+  "trick or treating",
+  "at a pottery class",
+  "at a poetry reading",
+  "at an experimental interpretative dance experience",
+  "Burning Man"
+];
 
 const places = [
-  'The Plaza', 'The Boathouse', 'The River Café', 'the Botanic Gardens', 'Temple Beth Israel', 'Four Seasons Hotel', 'Fifth Avenue Presbyterian Church', 'Mandarin Oriental hotel', 'Beverly Hills Hotel', 'Ace Hotel', 'Waldorf-Astoria', "the brides family summer home in Nantucket", 'United Methodist Church'
-]
+  "The Plaza",
+  "The Boathouse",
+  "The River Café",
+  "the Botanic Gardens",
+  "Temple Beth Israel",
+  "Four Seasons Hotel",
+  "Fifth Avenue Presbyterian Church",
+  "Mandarin Oriental hotel",
+  "Beverly Hills Hotel",
+  "Ace Hotel",
+  "Waldorf-Astoria",
+  "the brides family summer home in Nantucket",
+  "United Methodist Church"
+];
 
 const offrel = [
-  'a friend', 'a cousin', 'a college room mate', 'a family friend', 'a meditation teacher'
-]
+  "a friend",
+  "a cousin",
+  "a college room mate",
+  "a family friend",
+  "a meditation teacher"
+];
 
 const postgrad = [
-  "a Master's degree in Public Health", 'a PhD in Fine Art', 'an M.B.A', "a Master's in Social Work", 'a Doctorate in Literature', 'a Doctorate of Philsophy'
-]
-
+  "a Master's degree in Public Health",
+  "a PhD in Fine Art",
+  "an M.B.A",
+  "a Master's in Social Work",
+  "a Doctorate in Literature",
+  "a Doctorate of Philsophy"
+];
 
 const ivy_config = {
   dictionaries: [ivy],
@@ -51,22 +90,22 @@ const ivy_config = {
 
 const placemet_config = {
   dictionaries: [places_met],
-  length: 1,
+  length: 1
 };
 
 const places_config = {
   dictionaries: [places],
-  length: 1,
+  length: 1
 };
 
 const offrel_config = {
   dictionaries: [offrel],
-  length: 1,
+  length: 1
 };
 
 const postgrad_config = {
   dictionaries: [postgrad],
-  length: 1,
+  length: 1
 };
 
 var brideName = fakerator.names.nameF();
@@ -144,7 +183,7 @@ let notes = {
     
 <p>The groom is the son of #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
-<p>The couple first met #whereplace# in #wherelocation# but didn't hit it off. A later meeting at #whereplace2# in #wherelocation2# proved more fruitful and the couple have been dating since 2017.</p>
+<p>The couple first met #whereplace# in #wherelocation# but didn't hit it off. A later meeting #whereplace2# in #wherelocation2# proved more fruitful and the couple have been dating since 2017.</p>
 </div>
 `
   ]

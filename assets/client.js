@@ -4,6 +4,5 @@ $(function(){
       $('#resultsContainer').html(data);
       console.log(data);
     });
-    console.log("whee!")
   });
 });
