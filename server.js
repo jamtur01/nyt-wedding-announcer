@@ -27,15 +27,15 @@ const ivy = [
 ];
 
 const places_met = [
-  'Tinder', 'a college reunion', 'boating', 'college', 'summering in the Hamptons', 'a bar', 'a restaurant', 'Whole Foods', 'leaf peeping', 'trick or treating', 'a pottery class', 'a poetry reading', 'an experimental interpretative dance experience'
+  'on OkCupid', 'via a mutual friend', 'at a wedding', 'on Tinder', 'at a college reunion', 'boating', 'at college', 'while summering in the Hamptons', 'at a bar', 'at a restaurant', 'at Whole Foods', 'leaf peeping', 'trick or treating', 'at a pottery class', 'at a poetry reading', 'at an experimental interpretative dance experience'
 ]
 
 const places = [
-  'Mandarin Oriental hotel', 'Beverly Hills Hotel', 'Ace Hotel', 'Waldorf-Astoria', "the brides family summer home in Nantucket", 'United Methodist Church'
+  'Four Seasons Hotel', 'Fifth Avenue Presbyterian Church', 'Mandarin Oriental hotel', 'Beverly Hills Hotel', 'Ace Hotel', 'Waldorf-Astoria', "the brides family summer home in Nantucket", 'United Methodist Church'
 ]
 
 const offrel = [
-  'friend', 'cousin', 'a college room mate', 'family friend'
+  'a friend', 'cousin', 'a college room mate', 'family friend'
 ]
 
 const ivy_config = {
@@ -67,6 +67,7 @@ var brideFormerJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
 var brideMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
 var brideFatherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
 var bridePlace = fakerator.populate("#{address.city}");
+var brideGrad = uniqueNamesGenerator(ivy_config);
 var groomName = fakerator.names.nameM();
 var groomGrad = uniqueNamesGenerator(ivy_config);
 var groomDad = fakerator.names.nameM();
@@ -81,22 +82,22 @@ var officiant = fakerator.names.nameM();
 var offRelationship = uniqueNamesGenerator(offrel_config);
 var wherePlace = uniqueNamesGenerator(placemet_config);
 var whereLocation = fakerator.populate("#{address.city}");
+var place = uniqueNamesGenerator(places_config);
 
 // This is the Tracery grammar.
 let notes = {
   bride: [brideName],
   groom: [groomName],
   age: [age],
-  place: ["place"],
+  place: [place],
   state: [state],
   officant: [officiant],
   offrel: [offRelationship],
   bridejob: [brideJob],
   bridplace: [bridePlace],
   brideformer: [brideFormerJob],
-  bridegrad: ["bride's degree"],
+  bridegrad: [brideGrad],
   bridepostgrad: ["bride's postgrad"],
-  bridegender: ["gender"],
   bridemum: [brideMum],
   bridedad: [brideDad],
   brideplace: [bridePlace],
@@ -104,13 +105,11 @@ let notes = {
   bridemotherjob: [brideMotherJob],
   groomjob: [groomJob],
   groomgrad: [groomGrad],
-  groomgender: ["blah"],
   groommum: [groomMum],
   groomdad: [groomDad],
   groomplace: [groomPlace],
   groommotherjob: [groomMotherJob],
   groomfatherjob: [groomFatherJob],
-  wheremet: ["blah"],
   whereplace: [wherePlace],
   wherelocation: [whereLocation],
   origin: [
@@ -122,13 +121,13 @@ let notes = {
 
 <p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. She graduated from #bridegrad#, and received a #bridepostgrad#.</p>
 
-<p>#bridegender# is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
+<p>The bride is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
     
 <p>The groom, also #age#, is #groomjob#. He graduated magna cum laude from #groomgrad#.</p>
     
-<p>The groom is the #groomgender# of #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
+<p>The groom is the son of #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
-<p>The couple met at #whereplace# in #wherelocation#.</p>
+<p>The couple first met #whereplace# in #wherelocation#.</p>
 </div>
 `
   ]
