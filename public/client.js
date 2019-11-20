@@ -1,8 +1,10 @@
 $(document).ready(function(){
   $('#gen-btn').click(function(){
     $('#resultsContainer').empty();
-
-    $.get( '/announce', function(data) {
+    
+    $.ajaxSetup({cache: false});
+    
+    $.get( '/announce', { now: jQuery.now() }, function(data) {
       $('#resultsContainer').html(data);
       console.log(data);
     });

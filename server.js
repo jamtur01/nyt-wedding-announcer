@@ -187,14 +187,17 @@ let notes = {
 };
 
 app.use(express.static('public'));
+app.disable('etag');
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get("/announce", function(req, res) {
+  var results = '';
   var myGrammar = tracery.createGrammar(notes);
   var results = myGrammar.flatten("#origin#");
+
   res.send(results);
 });
 
