@@ -202,6 +202,7 @@ app.get("/announce", function(req, res) {
   var announcement = generate()
   res.send(announcement);
   announcement = '';
+  console.log(announcement);
 });
 
 // listen for requests :)
