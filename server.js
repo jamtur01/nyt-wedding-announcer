@@ -105,6 +105,8 @@ const postgrad_config = {
   length: 1
 };
 
+
+function generate () {
 var brideName = fakerator.names.nameF();
 var brideMum = fakerator.names.nameF();
 var brideDad = fakerator.names.nameM();
@@ -134,7 +136,7 @@ var wherePlace2 = uniqueNamesGenerator(placemet_config);
 var whereLocation2 = fakerator.populate("#{address.city}");
 var place = uniqueNamesGenerator(places_config);
 
-// This is the Tracery grammar.
+  // This is the Tracery grammar.
 let notes = {
   bride: [brideName],
   groom: [groomName],
@@ -185,8 +187,6 @@ let notes = {
 `
   ]
 };
-
-function generate () {
   var AnnounceGrammar = tracery.createGrammar(notes);
   var results = AnnounceGrammar.flatten("#origin#");
   return results
