@@ -6,6 +6,8 @@ var path = require("path");
 var tracery = require("tracery-grammar");
 var bodyParser = require("body-parser");
 
+var faker = require('faker');
+
 var Fakerator = require("fakerator");
 var fakerator = Fakerator();
 
@@ -86,12 +88,19 @@ const state_config = {
 
 const brideName = fakerator.names.nameF()
 const brideMum = fakerator.names.nameF()
-const brideDad = fakerator.names.nameM
+const brideDad = fakerator.names.nameM()
 const brideJob = fakerator.company.name()
+const brideMotherJob = fakerator.company.name()
+const brideFatherJob = fakerator.company.name()
+const bridePlace = fakerator.populate("#{address.city}")
 const groomName = fakerator.names.nameM()
 const groomDad = fakerator.names.nameM()
 const groomMum = fakerator.names.nameF()
 const groomJob = fakerator.company.name()
+const groomFatherJob = fakerator.company.name()
+const groomMotherJob = fakerator.company.name()
+const groomPlace = fakerator.populate("#{address.city}")
+
 const state = uniqueNamesGenerator(state_config);
 
 const age = (Math.floor(Math.random() * 30) + 19).toString();
@@ -105,25 +114,25 @@ let notes = {
   state: [state],
   officant: ["officant"],
   offrel: ["offrel"],
-  bridejob: ["bride job"],
-  bridplace: ["bride's work"],
+  bridejob: [brideJob],
+  bridplace: [bridePlace],
   brideformer: ["bride's former job"],
   bridegrad: ["bride's degree"],
   bridepostgrad: ["bride's postgrad"],
   bridegender: ["gender"],
   bridemum: [brideMum],
   bridedad: [brideDad],
-  brideplace: ["blah place"],
-  bridefatherjob: ["location"],
-  bridemotherjob: ["location"],
-  groomjob: ["location"],
+  brideplace: [bridePlace],
+  bridefatherjob: [brideFatherJob],
+  bridemotherjob: [brideMotherJob],
+  groomjob: [groomJob],
   groomgrad: ["location"],
   groomgender: ["blah"],
   groommum: [groomMum],
   groomdad: [groomDad],
-  groomplace: ["blah"],
-  groommotherjob: ["blah"],
-  groomfatherjob: ["blah"],
+  groomplace: [groomPlace],
+  groommotherjob: [groomMotherJob],
+  groomfatherjob: [groomFatherJob],
   wheremet: ["blah"],
   whereplace: ["blah"],
   wherelocation: ["blah"],
@@ -134,7 +143,7 @@ let notes = {
 
 <p>#bride# and #groom# were married Nov. 16 at the #place# in #state#. #officant#, #offrel# of the couple, officiated.</p>
 
-<p>The bride, #age#, is a #bridejob# in #bridplace#, and is a #brideformer#. She graduated from #bridegrad#, and received a #bridepostgrad#.</p>
+<p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. She graduated from #bridegrad#, and received a #bridepostgrad#.</p>
 
 <p>#bridegender# is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father is #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
     
