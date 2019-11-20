@@ -194,10 +194,8 @@ app.get('/', function(req, res) {
 });
 
 app.get("/announce", function(req, res) {
-  var results = '';
   var myGrammar = tracery.createGrammar(notes);
   var results = myGrammar.flatten("#origin#");
-
   res.send(results);
 });
 
