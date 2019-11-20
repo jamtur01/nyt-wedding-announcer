@@ -7,8 +7,7 @@ var tracery = require("tracery-grammar");
 var faker = require("faker");
 var Fakerator = require("fakerator");
 var fakerator = Fakerator();
-
-const { uniqueNamesGenerator } = require("unique-names-generator");
+var { uniqueNamesGenerator } = require("unique-names-generator");
 
 const ivy = [
   "Brown",
@@ -194,8 +193,9 @@ app.get('/', function(req, res) {
 });
 
 app.get("/announce", function(req, res) {
-  var myGrammar = tracery.createGrammar(notes);
-  var results = myGrammar.flatten("#origin#");
+  var AnnounceGrammar, results = '';
+  var AnnounceGrammar = tracery.createGrammar(notes);
+  var results = AnnounceGrammar.flatten("#origin#");
   res.send(results);
 });
 

@@ -3,8 +3,8 @@ document.getElementById("gen-btn").addEventListener("click", function() {
   xhr.open("GET", "/announce");
   xhr.onload = function() {
     if (xhr.status === 200) {
-       console.log(xhr.response);
-      document.getElementById("#resultsContainer").textContent = xhr.response;
+      console.log(xhr.response);
+      document.getElementById("resultsContainer").innerHTML = xhr.response;
     } else {
       console.log("Request failed.  Returned status of " + xhr.status);
     }
