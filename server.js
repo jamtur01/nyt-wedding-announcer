@@ -192,6 +192,7 @@ function generate () {
   return results
 };
 
+app.disable('etag')
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -201,8 +202,7 @@ app.get('/', function(req, res) {
 
 app.post("/", function(req, res) {
   var results = generate();
-  res.send(results);
-  res.redirect('back');
+  res.status(200).send(results);
 });
 
 // listen for requests :)
