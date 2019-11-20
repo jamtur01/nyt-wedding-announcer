@@ -26,11 +26,28 @@ const ivy = [
   "Stanford"
 ];
 
-const 
+const places = [
+  'college', 'summering in the Hamptons', 'a bar', 'a restaurant', 'Whole Foods', 'leaf peeping', 'trick or treating', 'a pottery class', 'a poetry reading', 'an experimental interpretative dance experience'
+]
+
+const offrel = [
+  'friend', 'cousin', 'a college room mate', 'family friend'
+]
+
 const ivy_config = {
   dictionaries: [ivy],
   length: 1,
   style: "capital"
+};
+
+const place_config = {
+  dictionaries: [places],
+  length: 1,
+};
+
+const offrel_config = {
+  dictionaries: [offrel],
+  length: 1,
 };
 
 var brideName = fakerator.names.nameF();
@@ -51,7 +68,10 @@ var groomMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
 var groomPlace = fakerator.populate("#{address.city}");
 var state = faker.address.state();
 var age = (Math.floor(Math.random() * 30) + 19).toString();
-var where
+var officiant = fakerator.names.nameM();
+var offRelationship = uniqueNamesGenerator(offrel_config);
+var wherePlace = uniqueNamesGenerator(place_config);
+var whereLocation = fakerator.populate("#{address.city}");
 
 // This is the Tracery grammar.
 let notes = {
@@ -60,8 +80,8 @@ let notes = {
   age: [age],
   place: ["place"],
   state: [state],
-  officant: ["officant"],
-  offrel: ["offrel"],
+  officant: [officiant],
+  offrel: [offRelationship],
   bridejob: [brideJob],
   bridplace: [bridePlace],
   brideformer: [brideFormerJob],
@@ -82,8 +102,8 @@ let notes = {
   groommotherjob: [groomMotherJob],
   groomfatherjob: [groomFatherJob],
   wheremet: ["blah"],
-  whereplace: ["blah"],
-  wherelocation: ["blah"],
+  whereplace: [wherePlace],
+  wherelocation: [whereLocation],
   origin: [
     `
 <div id=\"results\">
@@ -99,7 +119,7 @@ let notes = {
     
 <p>The groom is the #groomgender# of #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
-<p>The couple met #wheremet# at #whereplace# in #wherelocation#.</p>
+<p>The couple met at #whereplace# in #wherelocation#.</p>
 </div>
 `
   ]
