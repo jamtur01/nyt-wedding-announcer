@@ -34,7 +34,7 @@ const places_met = [
   "at a college reunion",
   "boating",
   "at college",
-  "while summering in the Hamptons",
+  "while summering",
   "at a bar",
   "at a restaurant",
   "at Whole Foods",
@@ -105,7 +105,7 @@ const postgrad_config = {
   length: 1
 };
 
-var brideName = faker.name.findName(); 
+var brideName = fakerator.names.nameF();
 var brideMum = fakerator.names.nameF();
 var brideDad = fakerator.names.nameM();
 var brideJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
@@ -172,11 +172,11 @@ let notes = {
 
 <p>#bride# and #groom# were married Nov. 16 at the #place# in #state#. #officant#, #offrel# of the couple, officiated.</p>
 
-<p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. They graduated from #bridegrad#, and also received #bridepostgrad# from #bridegrad2#.</p>
+<p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. The bride graduated from #bridegrad#, and also received #bridepostgrad# from #bridegrad2#.</p>
 
 <p>The bride's parents are #bridemum# and #bridedad# of #brideplace#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
     
-<p>The groom, also #age#, is #groomjob#. They graduated magna cum laude from #groomgrad#.</p>
+<p>The groom, also #age#, is a #groomjob#. The groom graduated magna cum laude from #groomgrad#.</p>
     
 <p>The groom's parents are #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
@@ -186,12 +186,6 @@ let notes = {
   ]
 };
 
-function generate() {
-  var myGrammar = tracery.createGrammar(notes);
-  var results = myGrammar.flatten("#origin#");
-  return results;
-}
-
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
@@ -199,8 +193,9 @@ app.get('/', function(req, res) {
 });
 
 app.get("/announce", function(req, res) {
-  var announcement = generate()
-  res.send(announcement);
+  var myGrammar = tracery.createGrammar(notes);
+  var results = myGrammar.flatten("#origin#");
+  res.send(results);
 });
 
 // listen for requests :)
