@@ -202,7 +202,7 @@ app.get('/', function(req, res) {
 app.post("/", function(req, res) {
   var results = generate();
   res.send(results);
-  res.end();
+  res.redirect('back');
 });
 
 // listen for requests :)
