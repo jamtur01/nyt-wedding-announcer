@@ -67,7 +67,7 @@ const offrel = [
   "a cousin",
   "a college room mate",
   "a family friend",
-  "a meditation teacher"
+  "the meditation teacher"
 ];
 
 const postgrad = [
@@ -201,8 +201,6 @@ app.get('/', function(req, res) {
 app.get("/announce", function(req, res) {
   var announcement = generate()
   res.send(announcement);
-  announcement = '';
-  console.log(announcement);
 });
 
 // listen for requests :)
