@@ -190,7 +190,6 @@ let notes = {
 };
 
 function generate() {
-  var results = '';
   var myGrammar = tracery.createGrammar(notes);
   var results = myGrammar.flatten("#origin#");
   return results;
