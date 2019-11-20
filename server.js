@@ -203,6 +203,8 @@ app.get('/', function(req, res) {
 app.post("/", function(req, res) {
   var results = generate();
   res.status(200).send(results);
+  res.end()
+  results = '';
 });
 
 // listen for requests :)
