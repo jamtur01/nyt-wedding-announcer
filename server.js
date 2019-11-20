@@ -86,24 +86,23 @@ const state_config = {
   style: "capital"
 }
 
-const brideName = fakerator.names.nameF()
-const brideMum = fakerator.names.nameF()
-const brideDad = fakerator.names.nameM()
-const brideJob = fakerator.company.name()
-const brideMotherJob = fakerator.company.name()
-const brideFatherJob = fakerator.company.name()
-const bridePlace = fakerator.populate("#{address.city}")
-const groomName = fakerator.names.nameM()
-const groomDad = fakerator.names.nameM()
-const groomMum = fakerator.names.nameF()
-const groomJob = fakerator.company.name()
-const groomFatherJob = fakerator.company.name()
-const groomMotherJob = fakerator.company.name()
-const groomPlace = fakerator.populate("#{address.city}")
-
-const state = uniqueNamesGenerator(state_config);
-
-const age = (Math.floor(Math.random() * 30) + 19).toString();
+var brideName = fakerator.names.nameF()
+var brideMum = fakerator.names.nameF()
+var brideDad = fakerator.names.nameM()
+var brideJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
+var brideFormerJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
+var brideMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
+var brideFatherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
+var bridePlace = fakerator.populate("#{address.city}")
+var groomName = fakerator.names.nameM()
+var groomDad = fakerator.names.nameM()
+var groomMum = fakerator.names.nameF()
+var groomJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
+var groomFatherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
+var groomMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}") 
+var groomPlace = fakerator.populate("#{address.city}")
+var state = faker.address.state()
+var age = (Math.floor(Math.random() * 30) + 19).toString();
 
 // This is the Tracery grammar.
 let notes = {
@@ -116,7 +115,7 @@ let notes = {
   offrel: ["offrel"],
   bridejob: [brideJob],
   bridplace: [bridePlace],
-  brideformer: ["bride's former job"],
+  brideformer: [brideFormerJob],
   bridegrad: ["bride's degree"],
   bridepostgrad: ["bride's postgrad"],
   bridegender: ["gender"],
@@ -149,7 +148,7 @@ let notes = {
     
 <p>The groom, also #age#, is #groomjob#. He graduated from #groomgrad#.</p>
     
-<p>The groom is the #groomgender# of #groommum# and #groomdad# of #groomplace#. The groom’s mother is #groommotherjob# and the groom's father is #groomfatherjob#.</p>
+<p>The groom is the #groomgender# of #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
 <p>The couple met #wheremet# at #whereplace# in #wherelocation#.</p>
 </div>
