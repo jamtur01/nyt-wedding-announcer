@@ -193,7 +193,6 @@ function generate () {
 };
 
 app.use(express.static('public'));
-app.disable('etag');
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.get('/', function(req, res) {
@@ -202,7 +201,8 @@ app.get('/', function(req, res) {
 
 app.post("/", function(req, res) {
   var results = generate();
-  return res.end(results);
+  res.write(results);
+  res.end();
 });
 
 // listen for requests :)
