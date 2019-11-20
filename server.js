@@ -6,6 +6,9 @@ var path = require("path");
 var tracery = require("tracery-grammar");
 var bodyParser = require("body-parser");
 
+var Fakerator = require("fakerator");
+var fakerator = Fakerator();
+
 const {
   uniqueNamesGenerator,
   names,
@@ -54,7 +57,6 @@ const states = [
   "New York",
   "North Carolina",
   "North Dakota",
-  "Northern Mariana Islands",
   "Ohio",
   "Oklahoma",
   "Oregon",
@@ -76,28 +78,23 @@ const states = [
   "Wyoming"
 ];
 
-const names_config = {
-  dictionaries: [names, colors, animals],
-  length: 2,
-  separator: " ",
-  style: "capital"
-};
-
 const state_config = {
   dictionaries: [states],
   length: 1,
   style: "capital"
 }
 
-const brideName = uniqueNamesGenerator(names_config);
-const brideMum = uniqueNamesGenerator(names_config);
-const brideDad = uniqueNamesGenerator(names_config);
-const groomName = uniqueNamesGenerator(names_config);
-const groomDad = uniqueNamesGenerator(names_config);
-const groomMum = uniqueNamesGenerator(names_config);
+const brideName = fakerator.names.nameF()
+const brideMum = fakerator.names.nameF()
+const brideDad = fakerator.names.nameM
+const brideJob = fakerator.company.name()
+const groomName = fakerator.names.nameM()
+const groomDad = fakerator.names.nameM()
+const groomMum = fakerator.names.nameF()
+const groomJob = fakerator.company.name()
 const state = uniqueNamesGenerator(state_config);
 
-const age = (Math.floor(Math.random() * 100) + 17).toString();
+const age = (Math.floor(Math.random() * 30) + 19).toString();
 
 // This is the Tracery grammar.
 let notes = {
@@ -165,6 +162,7 @@ app.use(express.static(path.join(__dirname + "/public")));
 app.get("/announce", urlencodedParser, function(req, res) {
   var announcement = generate();
   res.send(announcement);
+  announcement = ''
 });
 
 // listen for requests :)

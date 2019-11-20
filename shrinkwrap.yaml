@@ -1,6 +1,7 @@
 dependencies:
   body-parser: 1.19.0
   express: 4.17.1
+  fakerator: 0.3.0
   tracery-grammar: 2.7.4
   unique-names-generator: 4.1.1
 packages:
@@ -137,6 +138,10 @@ packages:
       node: '>= 0.10.0'
     resolution:
       integrity: sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==
+  /fakerator/0.3.0:
+    dev: false
+    resolution:
+      integrity: sha1-RjXZw0XTZ+z2mmiStSXVt/2noIA=
   /finalhandler/1.1.2:
     dependencies:
       debug: 2.6.9
@@ -408,5 +413,6 @@ shrinkwrapVersion: 3
 specifiers:
   body-parser: ^1.19.0
   express: ^4.15.2
+  fakerator: ^0.3.0
   tracery-grammar: ^2.7.4
   unique-names-generator: 4.1.1
