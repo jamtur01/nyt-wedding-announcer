@@ -1,4 +1,8 @@
 document.getElementById("gen-btn").addEventListener("click", function() {
+  var div = document.getElementById("resultsContainer"); 
+  while(div.firstChild) { 
+    div.removeChild(div.firstChild); 
+  } 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "/");
   xhr.onload = function() {

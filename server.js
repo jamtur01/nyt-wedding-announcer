@@ -201,7 +201,7 @@ app.get('/', function(req, res) {
 
 app.post("/", function(req, res) {
   var results = generate();
-  res.write(results);
+  res.send(results);
   res.end();
 });
 
