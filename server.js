@@ -190,6 +190,7 @@ let notes = {
 };
 
 function generate() {
+  
   var myGrammar = tracery.createGrammar(notes);
   var results = myGrammar.flatten("#origin#");
   return results;
@@ -201,9 +202,7 @@ app.use("/assets", express.static("assets"));
 app.use(express.static(path.join(__dirname + "/public")));
 
 app.get("/announce", urlencodedParser, function(req, res) {
-  var announcement = generate();
-  res.send(announcement);
-  announcement = "";
+  return res.send(generate());
 });
 
 // listen for requests :)
