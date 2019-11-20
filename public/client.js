@@ -1,6 +1,6 @@
 document.getElementById("gen-btn").addEventListener("click", function() {
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/announce");
+  xhr.open("POST", "/announce");
   xhr.onload = function() {
     if (xhr.status === 200) {
       console.log(xhr.response);

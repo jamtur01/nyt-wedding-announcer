@@ -200,9 +200,9 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/announce", function(req, res) {
+app.post("/announce", function(req, res) {
   var results = generate();
-  res.send(results);
+  return res.end(results);
 });
 
 // listen for requests :)
