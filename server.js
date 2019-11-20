@@ -200,7 +200,7 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.post("/announce", function(req, res) {
+app.post("/", function(req, res) {
   var results = generate();
   return res.end(results);
 });
