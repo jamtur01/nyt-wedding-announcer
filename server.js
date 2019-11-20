@@ -27,11 +27,11 @@ const ivy = [
 ];
 
 const places_met = [
-  'at a mutual friend’s birthday party', 'on OkCupid', 'via a mutual friend', 'at a wedding', 'on Tinder', 'at a college reunion', 'boating', 'at college', 'while summering in the Hamptons', 'at a bar', 'at a restaurant', 'at Whole Foods', 'leaf peeping', 'trick or treating', 'at a pottery class', 'at a poetry reading', 'at an experimental interpretative dance experience'
+  'on the dating app JSwipe', 'on the dating app Hinge', 'at a mutual friend’s birthday party', 'on OkCupid', 'via a mutual friend', 'at a wedding', 'on Tinder', 'at a college reunion', 'boating', 'at college', 'while summering in the Hamptons', 'at a bar', 'at a restaurant', 'at Whole Foods', 'leaf peeping', 'trick or treating', 'at a pottery class', 'at a poetry reading', 'at an experimental interpretative dance experience'
 ]
 
 const places = [
-  'Temple Beth Israel', 'Four Seasons Hotel', 'Fifth Avenue Presbyterian Church', 'Mandarin Oriental hotel', 'Beverly Hills Hotel', 'Ace Hotel', 'Waldorf-Astoria', "the brides family summer home in Nantucket", 'United Methodist Church'
+  'The Plaza', 'The Boathouse', 'The River Café', 'the Botanic Gardens', 'Temple Beth Israel', 'Four Seasons Hotel', 'Fifth Avenue Presbyterian Church', 'Mandarin Oriental hotel', 'Beverly Hills Hotel', 'Ace Hotel', 'Waldorf-Astoria', "the brides family summer home in Nantucket", 'United Methodist Church'
 ]
 
 const offrel = [
@@ -94,6 +94,8 @@ var officiant = fakerator.names.nameM();
 var offRelationship = uniqueNamesGenerator(offrel_config);
 var wherePlace = uniqueNamesGenerator(placemet_config);
 var whereLocation = fakerator.populate("#{address.city}");
+var wherePlace2 = uniqueNamesGenerator(placemet_config);
+var whereLocation2 = fakerator.populate("#{address.city}");
 var place = uniqueNamesGenerator(places_config);
 
 // This is the Tracery grammar.
@@ -125,6 +127,8 @@ let notes = {
   groomfatherjob: [groomFatherJob],
   whereplace: [wherePlace],
   wherelocation: [whereLocation],
+  whereplace2: [wherePlace2],
+  wherelocation2: [whereLocation2],
   origin: [
     `
 <div id=\"results\">
@@ -140,7 +144,7 @@ let notes = {
     
 <p>The groom is the son of #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
-<p>The couple first met #whereplace# in #wherelocation#.</p>
+<p>The couple first met #whereplace# in #wherelocation# but didn't hit it off. A later meeting at #whereplace2# in #wherelocation2# proved more fruitful and the couple have been dating since 2017.</p>
 </div>
 `
   ]
