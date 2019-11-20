@@ -2,6 +2,7 @@
 
 var express = require("express");
 var app = express();
+var bodyParser = require('body-parser')
 
 var tracery = require("tracery-grammar");
 var faker = require("faker");
@@ -171,7 +172,7 @@ let notes = {
 
 <p>#bride# and #groom# were married Nov. 16 at the #place# in #state#. #officant#, #offrel# of the couple, officiated.</p>
 
-<p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. The bride graduated from #bridegrad#, and also received #bridepostgrad# from #bridegrad2#.</p>
+<p>The bride, #age#, is a #bridejob#, and was formerly a #brideformer#. The bride graduated from #bridegrad#, and also received #bridepostgrad# from #bridegrad2#.</p>
 
 <p>The bride's parents are #bridemum# and #bridedad# of #brideplace#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
     
@@ -185,17 +186,22 @@ let notes = {
   ]
 };
 
+function generate () {
+  var AnnounceGrammar = tracery.createGrammar(notes);
+  var results = AnnounceGrammar.flatten("#origin#");
+  return results
+};
+
 app.use(express.static('public'));
 app.disable('etag');
+app.use(bodyParser.urlencoded({extended: false}))
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get("/announce", function(req, res) {
-  var AnnounceGrammar, results = '';
-  var AnnounceGrammar = tracery.createGrammar(notes);
-  var results = AnnounceGrammar.flatten("#origin#");
+  var results = generate();
   res.send(results);
 });
 
