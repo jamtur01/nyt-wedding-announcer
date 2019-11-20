@@ -19,7 +19,7 @@ const ivy = [
   "Cornell",
   "Dartmouth",
   "Harvard",
-  "the University of Pennsylvania",
+  "University of Pennsylvania",
   "Princeton",
   "Yale",
   "NYU",
@@ -27,16 +27,21 @@ const ivy = [
 ];
 
 const places_met = [
-  'on OkCupid', 'via a mutual friend', 'at a wedding', 'on Tinder', 'at a college reunion', 'boating', 'at college', 'while summering in the Hamptons', 'at a bar', 'at a restaurant', 'at Whole Foods', 'leaf peeping', 'trick or treating', 'at a pottery class', 'at a poetry reading', 'at an experimental interpretative dance experience'
+  'at a mutual friend’s birthday party', 'on OkCupid', 'via a mutual friend', 'at a wedding', 'on Tinder', 'at a college reunion', 'boating', 'at college', 'while summering in the Hamptons', 'at a bar', 'at a restaurant', 'at Whole Foods', 'leaf peeping', 'trick or treating', 'at a pottery class', 'at a poetry reading', 'at an experimental interpretative dance experience'
 ]
 
 const places = [
-  'Four Seasons Hotel', 'Fifth Avenue Presbyterian Church', 'Mandarin Oriental hotel', 'Beverly Hills Hotel', 'Ace Hotel', 'Waldorf-Astoria', "the brides family summer home in Nantucket", 'United Methodist Church'
+  'Temple Beth Israel', 'Four Seasons Hotel', 'Fifth Avenue Presbyterian Church', 'Mandarin Oriental hotel', 'Beverly Hills Hotel', 'Ace Hotel', 'Waldorf-Astoria', "the brides family summer home in Nantucket", 'United Methodist Church'
 ]
 
 const offrel = [
-  'a friend', 'cousin', 'a college room mate', 'family friend'
+  'a friend', 'a cousin', 'a college room mate', 'a family friend', 'a meditation teacher'
 ]
+
+const postgrad = [
+  "a Master's degree in Public Health", 'a PhD in Fine Art', 'an M.B.A', "a Master's in Social Work", 'a Doctorate in Literature', 'a Doctorate of Philsophy'
+]
+
 
 const ivy_config = {
   dictionaries: [ivy],
@@ -59,6 +64,11 @@ const offrel_config = {
   length: 1,
 };
 
+const postgrad_config = {
+  dictionaries: [postgrad],
+  length: 1,
+};
+
 var brideName = fakerator.names.nameF();
 var brideMum = fakerator.names.nameF();
 var brideDad = fakerator.names.nameM();
@@ -68,6 +78,8 @@ var brideMotherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
 var brideFatherJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
 var bridePlace = fakerator.populate("#{address.city}");
 var brideGrad = uniqueNamesGenerator(ivy_config);
+var brideGrad2 = uniqueNamesGenerator(ivy_config);
+var bridePostGrad = uniqueNamesGenerator(postgrad_config);
 var groomName = fakerator.names.nameM();
 var groomGrad = uniqueNamesGenerator(ivy_config);
 var groomDad = fakerator.names.nameM();
@@ -97,7 +109,8 @@ let notes = {
   bridplace: [bridePlace],
   brideformer: [brideFormerJob],
   bridegrad: [brideGrad],
-  bridepostgrad: ["bride's postgrad"],
+  bridegrad2: [brideGrad2],
+  bridepostgrad: [bridePostGrad],
   bridemum: [brideMum],
   bridedad: [brideDad],
   brideplace: [bridePlace],
@@ -119,7 +132,7 @@ let notes = {
 
 <p>#bride# and #groom# were married Nov. 16 at the #place# in #state#. #officant#, #offrel# of the couple, officiated.</p>
 
-<p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. She graduated from #bridegrad#, and received a #bridepostgrad#.</p>
+<p>The bride, #age#, is a #bridejob#, and is formerly a #brideformer#. She graduated from #bridegrad#, and also received #bridepostgrad# from #bridegrad2#.</p>
 
 <p>The bride is the daughter of #bridemum# and #bridedad# of #brideplace#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
     
