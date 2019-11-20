@@ -2,11 +2,9 @@
 
 var express = require("express");
 var app = express();
-var path = require("path");
+
 var tracery = require("tracery-grammar");
-
 var faker = require("faker");
-
 var Fakerator = require("fakerator");
 var fakerator = Fakerator();
 
@@ -107,7 +105,7 @@ const postgrad_config = {
   length: 1
 };
 
-var brideName = fakerator.names.nameF();
+var brideName = faker.name.findName(); 
 var brideMum = fakerator.names.nameF();
 var brideDad = fakerator.names.nameM();
 var brideJob = faker.fake("{{name.jobTitle}} at {{company.companyName}}");
@@ -118,7 +116,7 @@ var bridePlace = fakerator.populate("#{address.city}");
 var brideGrad = uniqueNamesGenerator(ivy_config);
 var brideGrad2 = uniqueNamesGenerator(ivy_config);
 var bridePostGrad = uniqueNamesGenerator(postgrad_config);
-var groomName = fakerator.names.nameM();
+var groomName = faker.name.findName(); 
 var groomGrad = uniqueNamesGenerator(ivy_config);
 var groomDad = fakerator.names.nameM();
 var groomMum = fakerator.names.nameF();
@@ -201,7 +199,9 @@ app.get('/', function(req, res) {
 });
 
 app.get("/announce", function(req, res) {
-  res.send(generate());
+  var announcement = generate()
+  res.send(announcement);
+  announcement = '';
 });
 
 // listen for requests :)
