@@ -63,11 +63,11 @@ const places = [
 ];
 
 const offrel = [
-  "a friend",
-  "a cousin",
-  "a college room mate",
-  "a family friend",
-  "the meditation teacher"
+  "a friend of the couple",
+  "a cousin of the groom",
+  "a college room mate of the couple",
+  "a family friend of the couple",
+  "the couple's meditation teacher"
 ];
 
 const postgrad = [
@@ -185,7 +185,7 @@ function generate() {
 <div id=\"results\">
 <h2>#bride#, #groom#</h2>
 
-<p>#bride# and #groom# were married Nov. 16 at the #place# in #state#. #officant#, #offrel# of the couple, officiated.</p>
+<p>#bride# and #groom# were married Nov. 16 at the #place# in #state#. #officant#, #offrel#, officiated.</p>
 
 <p>The bride, #age#, is a #bridejob#, and was formerly a #brideformer#. The bride graduated from #bridegrad#, and also received #bridepostgrad# from #bridegrad2#.</p>
 
