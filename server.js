@@ -136,6 +136,8 @@ function generate() {
   );
   var groomPlace = fakerator.populate("#{address.city}");
   var state = faker.address.state();
+  var bstate = faker.address.state();
+  var gstate = faker.address.state();
   var age = (Math.floor(Math.random() * 30) + 21).toString();
   var officiant = fakerator.names.nameM();
   var offRelationship = uniqueNamesGenerator(offrel_config);
@@ -152,6 +154,8 @@ function generate() {
     age: [age],
     place: [place],
     state: [state],
+    bstate: [bstate],
+    gstate: [gstate],
     officant: [officiant],
     offrel: [offRelationship],
     bridejob: [brideJob],
@@ -185,11 +189,11 @@ function generate() {
 
 <p>The bride, #age#, is a #bridejob#, and was formerly a #brideformer#. The bride graduated from #bridegrad#, and also received #bridepostgrad# from #bridegrad2#.</p>
 
-<p>The bride's parents are #bridemum# and #bridedad# of #brideplace#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
+<p>The bride's parents are #bridemum# and #bridedad# of #brideplace#, #bstate#. The bride’s father, who is retired, was a #bridefatherjob# and the bride's mother is a #bridemotherjob#.</p>
     
 <p>The groom, also #age#, is a #groomjob#. The groom graduated magna cum laude from #groomgrad#.</p>
     
-<p>The groom's parents are #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
+<p>The groom's parents are #groommum# and #groomdad# of #groomplace#, #gstate#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
 <p>The couple first met #whereplace# in #wherelocation# but didn't hit it off. A later meeting, #whereplace2# in #wherelocation2#, proved more fruitful and the couple have been dating since 2017.</p>
 </div>
