@@ -24,13 +24,13 @@ const ivy = [
 ];
 
 const places_met = [
-  "on the dating app JSwipe",
-  "on the dating app Hinge",
+  "on a JSwipe date",
+  "on a Hinge date",
   "at a mutual friend’s birthday party",
-  "on OkCupid",
+  "on an OkCupid date",
   "via a mutual friend",
   "at a wedding",
-  "on Tinder",
+  "on a Tinder date",
   "at a college reunion",
   "boating",
   "at college",
@@ -43,7 +43,7 @@ const places_met = [
   "at a pottery class",
   "at a poetry reading",
   "at an experimental interpretative dance experience",
-  "Burning Man"
+  "at Burning Man"
 ];
 
 const places = [
@@ -191,7 +191,7 @@ function generate() {
     
 <p>The groom's parents are #groommum# and #groomdad# of #groomplace#. The groom’s mother is a #groommotherjob# and the groom's father is a #groomfatherjob#.</p>
     
-<p>The couple first met #whereplace# in #wherelocation# but didn't hit it off. A later meeting #whereplace2# in #wherelocation2# proved more fruitful and the couple have been dating since 2017.</p>
+<p>The couple first met #whereplace# in #wherelocation# but didn't hit it off. A later meeting, #whereplace2# in #wherelocation2#, proved more fruitful and the couple have been dating since 2017.</p>
 </div>
 `
     ]

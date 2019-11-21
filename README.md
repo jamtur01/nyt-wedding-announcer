@@ -1,9 +1,7 @@
-Using Tracery from Glitch
-=========================
+NYT Wedding Announcer
+=====================
 
-Tracery is a JavaScript library, by [GalaxyKate](https://twitter.com/GalaxyKate), that uses grammars to generate surprising new text.
-
-[About Tracery](https://github.com/galaxykate/tracery)
+Generates New York Times Wedding Announcements.
 
 [About Glitch](https://glitch.com/about)
 
