@@ -1,32 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>New York Times Wedding Announcement generator</title>
-    <meta name="description" content="Made with Glitch and Tracery">
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>New York Times Wedding Announcement Generator</title>
+    <meta
+      name="description"
+      content="Generate sophisticated parody New York Times wedding announcements with authentic styling, prestigious careers, and elite university backgrounds"
+    />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Favicon -->
+    <link
+      id="favicon"
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='90' font-size='90'>💍</text></svg>"
+      type="image/svg+xml"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+
+    <!-- Meta tags for social sharing -->
+    <meta property="og:title" content="NYT Wedding Announcement Generator" />
+    <meta
+      property="og:description"
+      content="Generate sophisticated parody wedding announcements in authentic NYT style"
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
   </head>
   <body>
     <header>
-      <h1>New York Times Wedding Announcement generator</h1>
+      <h1>New York Times Wedding Announcer</h1>
+      <p class="subtitle">
+        Generate your own authentic New York Times wedding announcements
+      </p>
     </header>
+
     <main>
-      <p>Generate a wedding announcement!</p>
-      <button type="button" id="gen-btn">Generate!</button>
+      <div class="control-panel">
+        <p>Create wedding announcements in the classic New York Times style.</p>
+        <button type="button" id="gen-btn" aria-describedby="loading">
+          Generate Wedding Announcement
+        </button>
+        <div class="loading" id="loading" role="status" aria-live="polite">
+          ✨ Crafting your announcement...
+        </div>
+      </div>
+
       <div id="resultsContainer">
-        ✒️
+        <div class="stats">Your announcement goes here.</div>
       </div>
     </main>
+
     <footer>
-      <!-- include the Glitch button to show what the webpage is about and
-            to make it easier for folks to view source and remix -->
-      <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-      <script src="https://button.glitch.me/button.js"></script>
-      <script type="text/javascript" src="/client.js"></script>
+      <p><strong>NYT Wedding Announcer</strong> - A parody generator</p>
+      <p>
+        All names, places, and personal details are fictional. No real
+        information is collected or stored.
+      </p>
+      <p>
+        <small
+          >Educational and entertainment purposes only. Not affiliated with The
+          New York Times.</small
+        >
+      </p>
     </footer>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="/client.js"></script>
+
+    <!-- Structured data for search engines -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "NYT Wedding Announcement Generator",
+        "description": "Generate parody New York Times wedding announcements",
+        "applicationCategory": "Entertainment",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
   </body>
 </html>
-
