@@ -240,4 +240,6 @@ console.log('🎩 NYT Wedding Announcer loaded successfully!');
 console.log('💼 Featuring 135+ prestigious careers and fake elite universities');
 console.log('🎓 Including Rhodes Scholars, Harvard Law graduates, and Goldman Sachs partners');
 console.log('🦷 Smart title matching: DDS for dentists, Dr. for physicians and PhDs');
+console.log('🎨 Powered by RiTa.js with narrative-aware titles and matching content');
+console.log('📖 Each title drives specific story elements and meeting contexts');
 console.log('💍 Press Space or Enter to generate, or click the button');

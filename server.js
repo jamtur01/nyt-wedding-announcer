@@ -6,6 +6,7 @@ var faker = require("faker");
 var Fakerator = require("fakerator");
 var fakerator = Fakerator();
 var { uniqueNamesGenerator } = require("unique-names-generator");
+var { RiTa } = require("rita");
 
 const ivy = [
   "Brownfield University",
@@ -183,21 +184,20 @@ const consulting_jobs = [
 ];
 
 const tech_jobs = [
-  "senior software engineer at Google",
-  "product manager at Meta",
-  "data scientist at Microsoft",
-  "software architect at Amazon",
-  "machine learning engineer at OpenAI",
-  "senior developer at Salesforce",
-  "product designer at Apple",
-  "engineering manager at Netflix",
-  "cybersecurity analyst at Palantir",
-  "cloud architect at Amazon Web Services",
-  "senior engineer at Uber",
-  "data engineer at Airbnb",
-  "DevOps engineer at GitHub",
-  "AI researcher at DeepMind",
-  "principal engineer at Tesla",
+  "VP of Engineering at Google",
+  "Senior Director of Product at Meta",
+  "Director of Data Science at Microsoft",
+  "VP of Cloud Architecture at Amazon",
+  "Director of AI Research at OpenAI",
+  "SVP of Engineering at Salesforce",
+  "Director of Design at Apple",
+  "VP of Engineering at Netflix",
+  "Director of Security at Palantir",
+  "Senior Director of Cloud Services at Amazon Web Services",
+  "VP of Engineering at Uber",
+  "Director of Data Engineering at Airbnb",
+  "Senior Director of AI Research at DeepMind",
+  "VP of Autonomous Systems at Tesla",
 ];
 
 const media_arts_jobs = [
@@ -613,11 +613,73 @@ const honors_config = {
 };
 
 function generate() {
-  var brideName = fakerator.names.nameF();
-  var brideMum = fakerator.names.nameF();
-  var brideDad = fakerator.names.nameM();
+  // Generate bride's family with proper surname inheritance
+  var brideFirstName = fakerator.names.nameF();
+  var brideMumFirstName = fakerator.names.nameF();
+  var brideDadFirstName = fakerator.names.nameM();
+  
+  // Generate a family surname
+  var familySurname = fakerator.names.surname();
+  
+  // Determine bride's surname (70% father's, 20% mother's, 10% hyphenated)
+  var brideLastName;
+  var brideMumLastName;
+  var brideDadLastName;
+  var random = Math.random();
+  
+  if (random < 0.7) {
+    // Use father's surname for bride
+    brideLastName = familySurname;
+    brideDadLastName = familySurname;
+    brideMumLastName = fakerator.names.surname(); // Mother has different maiden name
+  } else if (random < 0.9) {
+    // Use mother's surname for bride
+    brideLastName = familySurname;
+    brideMumLastName = familySurname;
+    brideDadLastName = fakerator.names.surname(); // Father has different surname
+  } else {
+    // Hyphenated name for bride
+    var motherSurname = fakerator.names.surname();
+    var fatherSurname = fakerator.names.surname();
+    brideLastName = `${motherSurname}-${fatherSurname}`;
+    brideMumLastName = motherSurname;
+    brideDadLastName = fatherSurname;
+  }
+  
+  var brideName = `${brideFirstName} ${brideLastName}`;
+  var brideMum = `${brideMumFirstName} ${brideMumLastName}`;
+  var brideDad = `${brideDadFirstName} ${brideDadLastName}`;
   var brideJob = uniqueNamesGenerator(prestigious_jobs_config);
-  var brideFormerJob = uniqueNamesGenerator(prestigious_jobs_config);
+  
+  // Create logical career progression for former jobs
+  function getLogicalFormerJob(currentJob) {
+    if (finance_jobs.includes(currentJob)) {
+      return selectRandom([...consulting_jobs, ...finance_jobs, ...academic_jobs]);
+    } else if (legal_jobs.includes(currentJob)) {
+      return selectRandom([...legal_jobs, ...government_jobs, ...academic_jobs]);
+    } else if (medical_jobs.includes(currentJob)) {
+      return selectRandom([...medical_jobs, ...academic_jobs]);
+    } else if (dental_jobs.includes(currentJob)) {
+      return selectRandom([...dental_jobs, ...medical_jobs]);
+    } else if (consulting_jobs.includes(currentJob)) {
+      return selectRandom([...consulting_jobs, ...finance_jobs, ...academic_jobs]);
+    } else if (tech_jobs.includes(currentJob)) {
+      return selectRandom([...tech_jobs, ...consulting_jobs, ...academic_jobs]);
+    } else if (academic_jobs.includes(currentJob)) {
+      return selectRandom([...academic_jobs, ...government_jobs, ...nonprofit_jobs]);
+    } else if (government_jobs.includes(currentJob)) {
+      return selectRandom([...government_jobs, ...legal_jobs, ...academic_jobs]);
+    } else if (nonprofit_jobs.includes(currentJob)) {
+      return selectRandom([...nonprofit_jobs, ...government_jobs, ...academic_jobs]);
+    } else if (media_arts_jobs.includes(currentJob)) {
+      return selectRandom([...media_arts_jobs, ...academic_jobs, ...nonprofit_jobs]);
+    } else {
+      // Default fallback
+      return selectRandom([...consulting_jobs, ...academic_jobs]);
+    }
+  }
+  
+  var brideFormerJob = getLogicalFormerJob(brideJob);
   var brideMotherJob = uniqueNamesGenerator(mother_jobs_config);
   var brideFatherJob = uniqueNamesGenerator(father_jobs_config);
   var bridePlace = uniqueNamesGenerator(cities_config);
@@ -665,12 +727,50 @@ function generate() {
   var brideTitle = brideJobInfo.title;
   var bridePostGrad = brideJobInfo.degree;
   
-  var groomName = fakerator.names.nameM();
+  // Generate groom's family with proper surname inheritance
+  var groomFirstName = fakerator.names.nameM();
   var groomGrad = uniqueNamesGenerator(ivy_config);
-  var groomDad = fakerator.names.nameM();
-  var groomMum = fakerator.names.nameF();
+  var groomDadFirstName = fakerator.names.nameM();
+  var groomMumFirstName = fakerator.names.nameF();
+  
+  // Generate a family surname for groom
+  var groomFamilySurname = fakerator.names.surname();
+  
+  // Determine groom's surname (70% father's, 20% mother's, 10% hyphenated)
+  var groomLastName;
+  var groomMumLastName;
+  var groomDadLastName;
+  var groomRandom = Math.random();
+  
+  if (groomRandom < 0.7) {
+    // Use father's surname for groom
+    groomLastName = groomFamilySurname;
+    groomDadLastName = groomFamilySurname;
+    groomMumLastName = fakerator.names.surname(); // Mother has different maiden name
+  } else if (groomRandom < 0.9) {
+    // Use mother's surname for groom
+    groomLastName = groomFamilySurname;
+    groomMumLastName = groomFamilySurname;
+    groomDadLastName = fakerator.names.surname(); // Father has different surname
+  } else {
+    // Hyphenated name for groom
+    var groomMotherSurname = fakerator.names.surname();
+    var groomFatherSurname = fakerator.names.surname();
+    groomLastName = `${groomMotherSurname}-${groomFatherSurname}`;
+    groomMumLastName = groomMotherSurname;
+    groomDadLastName = groomFatherSurname;
+  }
+  
+  var groomName = `${groomFirstName} ${groomLastName}`;
+  var groomDad = `${groomDadFirstName} ${groomDadLastName}`;
+  var groomMum = `${groomMumFirstName} ${groomMumLastName}`;
   var groomJob = uniqueNamesGenerator(prestigious_jobs_config);
-  var groomFatherJob = uniqueNamesGenerator(father_jobs_config);
+  
+  // Ensure groom's father has different job than bride's father
+  var groomFatherJob;
+  do {
+    groomFatherJob = uniqueNamesGenerator(father_jobs_config);
+  } while (groomFatherJob === brideFatherJob);
   
   // Ensure groom's mother has different job than bride's mother
   var groomMotherJob;
@@ -736,72 +836,327 @@ function generate() {
     groomGrad
   );
 
-  // Template literal functions
-  function template1() {
-    return `
-<div id="results">
-<h2>${brideName}, ${groomName}</h2>
-
-<p>${brideName} and ${groomName} were married Saturday at ${venue}. ${officiant} officiated.</p>
-
-<p>${includeBrideTitle ? brideTitle + " " : ""}${brideName}, ${brideAge}, is a ${brideJob}. She ${brideGradText} and received ${bridePostGrad}.${includeBrideFormer ? ` She was previously a ${brideFormerJob}.` : ""}</p>
-
-<p>She is a daughter of ${brideMum} and ${brideDad} of ${bridePlace}, ${bstate}. Her father is a ${brideFatherJob} and her mother is a ${brideMotherJob}.</p>
+  // RiTa.js enhanced text generation with creative features
+  
+  // Use RiTa's random selection for creative variations
+  function selectRandom(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+  
+  // Narrative-aware title and content generation
+  function generateTitleAndNarrative() {
+    const titleOptions = [
+      // Use existing story titles with narrative content
+      ...story_titles,
+      // Add some creative generated titles
+      `${selectRandom(["Brilliant", "Distinguished", "Remarkable", "Exceptional"])} ${selectRandom(["Partnership", "Union", "Alliance"])}`,
+      `${selectRandom(["Metropolitan", "Garden", "Elegant"])} Affair`
+    ];
     
-<p>${includeGroomTitle ? groomTitle + " " : ""}${groomName}, ${groomAge}, is a ${groomJob}. He ${groomGradText}${includeGroomPostGrad ? ` and received ${groomPostGrad}` : ""}.</p>
+    const selectedTitle = selectRandom(titleOptions);
     
-<p>He is a son of ${groomMum} and ${groomDad} of ${groomPlace}, ${gstate}. His mother is a ${groomMotherJob} and his father is a ${groomFatherJob}.</p>
+    // Generate narrative content based on the title
+    function generateNarrativeContent(title) {
+      switch(title) {
+        case "A Shared Passion for Justice":
+          return {
+            meetingContext: "while both volunteering for a civil rights organization",
+            relationshipDetail: "They discovered their shared commitment to social justice and quickly realized they both dreamed of careers in public interest law.",
+            careerFocus: true,
+            careerTypes: ["legal", "government", "nonprofit"]
+          };
+          
+        case "Love in the Age of Innovation":
+          return {
+            meetingContext: "at a technology conference in Silicon Valley",
+            relationshipDetail: "Both were presenting their research on artificial intelligence applications, and their shared vision for technological innovation sparked an immediate connection.",
+            careerFocus: true,
+            careerTypes: ["tech", "academic"]
+          };
+          
+        case "Two Hearts, One Mission":
+          return {
+            meetingContext: "while working for the same nonprofit organization",
+            relationshipDetail: "Their dedication to humanitarian work and shared mission to combat global poverty created an unbreakable bond.",
+            careerFocus: true,
+            careerTypes: ["nonprofit", "government"]
+          };
+          
+        case "A Match Made in Manhattan":
+          return {
+            meetingContext: "at a charity gala in Midtown Manhattan",
+            relationshipDetail: "Despite coming from different professional worlds, they found they shared the same values and love for the city that brought them together.",
+            careerFocus: false,
+            careerTypes: ["finance", "legal", "media"]
+          };
+          
+        case "Finding Love Through Service":
+          return {
+            meetingContext: "while both volunteering at a literacy program",
+            relationshipDetail: "Their shared commitment to community service and education reform revealed deeper compatibility in their values and life goals.",
+            careerFocus: true,
+            careerTypes: ["academic", "nonprofit", "government"]
+          };
+          
+        case "A Modern Romance":
+          return {
+            meetingContext: "through a professional networking app",
+            relationshipDetail: "What began as a career-focused connection evolved into something deeper when they discovered their mutual passion for sustainable urban development.",
+            careerFocus: true,
+            careerTypes: ["consulting", "government", "academic"]
+          };
+          
+        case "Destiny in the Details":
+          return {
+            meetingContext: "in the same graduate program, though they had attended different undergraduate universities",
+            relationshipDetail: "They later discovered they had been in the same elementary school class but hadn't spoken until fate brought them together again two decades later.",
+            careerFocus: false
+          };
+          
+        case "Love Across Boroughs":
+          return {
+            meetingContext: "on a delayed subway train between Manhattan and Brooklyn",
+            relationshipDetail: "Despite living in different boroughs and working in different industries, they found that geography meant nothing compared to their intellectual connection.",
+            careerFocus: false
+          };
+          
+        case "When Worlds Collide":
+          return {
+            meetingContext: "at an interdisciplinary conference on economics and environmental science",
+            relationshipDetail: "Coming from completely different academic backgrounds, they discovered that their diverse perspectives created a perfect intellectual complement.",
+            careerFocus: true
+          };
+          
+        case "A Meeting of Minds":
+          return {
+            meetingContext: "during a doctoral program symposium",
+            relationshipDetail: "Both were presenting their dissertation research, and their intellectual curiosity and academic passion created an immediate and lasting connection.",
+            careerFocus: true
+          };
+          
+        case "Serendipity in the City":
+          return {
+            meetingContext: "at the same coffee shop in SoHo, where they both worked remotely",
+            relationshipDetail: "For months they had noticed each other but never spoken, until a chance conversation about the book she was reading revealed their shared love of literature.",
+            careerFocus: false
+          };
+          
+        case "Love and Professional Ambition":
+          return {
+            meetingContext: "during their MBA program at a prestigious business school",
+            relationshipDetail: "Both were driven professionals climbing the corporate ladder, but they learned that true success meant finding someone who shared their ambitions and values.",
+            careerFocus: true
+          };
+          
+        case "A Tale of Two Scholars":
+          return {
+            meetingContext: "at a Rhodes Scholar reunion event",
+            relationshipDetail: "Having both studied at Oxford as Rhodes Scholars, though in different years, they bonded over their transformative experiences abroad and shared academic passions.",
+            careerFocus: true
+          };
+          
+        case "Chemistry in Common":
+          return {
+            meetingContext: "while both conducting research at the same medical laboratory",
+            relationshipDetail: "Their collaboration on a groundbreaking study revealed not only professional chemistry but personal compatibility that extended far beyond the lab.",
+            careerFocus: true
+          };
+          
+        case "The Perfect Partnership":
+          return {
+            meetingContext: "while working on the same legal case at different firms",
+            relationshipDetail: "Their professional collaboration as opposing counsel revealed mutual respect and admiration that blossomed into a perfect personal partnership.",
+            careerFocus: true
+          };
+          
+        case "Unlikely Connections":
+          return {
+            meetingContext: "at their college reunion, having never met during their undergraduate years",
+            relationshipDetail: "Despite walking the same campus for four years, they never crossed paths until their 10-year reunion, where they discovered an instant and unexpected connection.",
+            careerFocus: false
+          };
+          
+        case "A Story of Second Chances":
+          return {
+            meetingContext: "after both had recently ended long-term relationships",
+            relationshipDetail: "Neither was looking for love when they met at a friend's housewarming party, but they discovered that sometimes the best relationships come when you least expect them.",
+            careerFocus: false
+          };
+          
+        case "Building Something Beautiful Together":
+          return {
+            meetingContext: "while both volunteering for Habitat for Humanity",
+            relationshipDetail: "Working side by side to build homes for families in need, they realized they wanted to build a life together based on shared values of service and community.",
+            careerFocus: true
+          };
+          
+        default:
+          return {
+            meetingContext: wherePlace + " in " + whereLocation,
+            relationshipDetail: meetingStory,
+            careerFocus: Math.random() > 0.5,
+            careerTypes: null
+          };
+      }
+    }
     
-<p>The couple met ${wherePlace} in ${whereLocation}. ${meetingStory}</p>
-</div>
-`;
+    return {
+      title: selectedTitle,
+      narrative: generateNarrativeContent(selectedTitle)
+    };
+  }
+  
+  // Enhanced wedding day variations
+  function generateWeddingDay() {
+    const weddingDays = [
+      "Saturday", "Saturday evening", "Friday evening",
+      selectRandom(["a beautiful autumn Saturday", "a crisp winter Saturday", "a lovely spring Saturday", "a perfect summer Saturday"]),
+      selectRandom(["Saturday morning", "Saturday afternoon", "Sunday afternoon"])
+    ];
+    return selectRandom(weddingDays);
+  }
+  
+  // Enhanced meeting story with linguistic variations
+  function generateMeetingStory() {
+    const meetingVerbs = ["met", "first encountered each other", "crossed paths", "were introduced", "connected"];
+    const structures = [
+      `The couple ${selectRandom(meetingVerbs)} ${wherePlace} in ${whereLocation}. ${meetingStory}`,
+      `${meetingStory} The couple ${selectRandom(meetingVerbs)} ${wherePlace} in ${whereLocation}.`,
+      `It was ${wherePlace} in ${whereLocation} where the couple ${selectRandom(meetingVerbs)}. ${meetingStory}`
+    ];
+    return selectRandom(structures);
+  }
+  
+  // Education description variations
+  function generateEducationText(gradText, postGrad) {
+    const variations = [
+      `${gradText} and received ${postGrad}`,
+      `${gradText} before earning ${postGrad}`,
+      `${gradText} and later completed ${postGrad}`
+    ];
+    return selectRandom(variations);
+  }
+  
+  // Career description variations  
+  function generateCareerText(name, age, job) {
+    const intros = [
+      `${name}, ${age}, is a ${job}`,
+      `${name}, ${age}, works as a ${job}`,
+      `${name}, ${age}, serves as a ${job}`,
+      `${name}, ${age}, holds the position of ${job}`
+    ];
+    return selectRandom(intros);
+  }
+  
+  // Function to get narrative-appropriate jobs
+  function getNarrativeJob(careerTypes) {
+    if (!careerTypes) return uniqueNamesGenerator(prestigious_jobs_config);
+    
+    const jobsByType = {
+      legal: legal_jobs,
+      government: government_jobs,
+      nonprofit: nonprofit_jobs,
+      tech: tech_jobs,
+      academic: academic_jobs,
+      finance: finance_jobs,
+      consulting: consulting_jobs,
+      medical: medical_jobs,
+      media: media_arts_jobs
+    };
+    
+    const availableJobs = [];
+    careerTypes.forEach(type => {
+      if (jobsByType[type]) {
+        availableJobs.push(...jobsByType[type]);
+      }
+    });
+    
+    if (availableJobs.length === 0) return uniqueNamesGenerator(prestigious_jobs_config);
+    
+    return availableJobs[Math.floor(Math.random() * availableJobs.length)];
   }
 
-  function template2() {
-    return `
-<div id="results">
-<h2>${storyTitle}: ${brideName} and ${groomName}</h2>
+  // Generate narrative-aware content
+  const titleAndNarrative = generateTitleAndNarrative();
+  
+  // Override jobs if narrative specifies career types
+  if (titleAndNarrative.narrative.careerTypes) {
+    brideJob = getNarrativeJob(titleAndNarrative.narrative.careerTypes);
+    groomJob = getNarrativeJob(titleAndNarrative.narrative.careerTypes);
+    
+    // Regenerate job-compatible titles and degrees
+    var brideJobInfo = getCompatibleTitleAndDegree(brideJob);
+    brideTitle = brideJobInfo.title;
+    bridePostGrad = brideJobInfo.degree;
+    
+    var groomJobInfo = getCompatibleTitleAndDegree(groomJob);
+    groomTitle = groomJobInfo.title;
+    groomPostGrad = groomJobInfo.degree;
+  }
+  
+  const enhancedWeddingDay = generateWeddingDay();
+  const enhancedBrideEducation = generateEducationText(brideGradText, bridePostGrad);
+  const enhancedGroomEducation = generateEducationText(groomGradText, groomPostGrad);
+  
+  // Use narrative-aware meeting story
+  const narrativeMeetingStory = `The couple met ${titleAndNarrative.narrative.meetingContext}. ${titleAndNarrative.narrative.relationshipDetail}`;
+  
+  // Template variations using narrative-aware content
+  const templates = [
+    // Basic announcement with narrative title
+    `<div id="results">
+<h2>${brideName}, ${groomName}</h2>
+
+<p>${brideName} and ${groomName} were married ${enhancedWeddingDay} at ${venue}. ${officiant} officiated.</p>
+
+<p>${includeBrideTitle && brideTitle ? brideTitle + " " : ""}${generateCareerText(brideName, brideAge, brideJob)}. She ${enhancedBrideEducation}.${includeBrideFormer && !titleAndNarrative.narrative.careerFocus ? ` She was previously a ${brideFormerJob}.` : ""}</p>
+
+<p>She is a daughter of Mrs. ${brideMum} and ${brideDad} of ${bridePlace}, ${bstate}. Her father is a ${brideFatherJob} and her mother is a ${brideMotherJob}.</p>
+    
+<p>${includeGroomTitle && groomTitle ? groomTitle + " " : ""}${generateCareerText(groomName, groomAge, groomJob)}. He ${groomGradText}${includeGroomPostGrad ? ` and received ${groomPostGrad}` : ""}.</p>
+    
+<p>He is a son of Mrs. ${groomMum} and ${groomDad} of ${groomPlace}, ${gstate}. His mother is a ${groomMotherJob} and his father is a ${groomFatherJob}.</p>
+    
+<p>${narrativeMeetingStory}</p>
+</div>`,
+
+    // Story title announcement with narrative-driven content
+    `<div id="results">
+<h2>${titleAndNarrative.title}: ${brideName} and ${groomName}</h2>
 
 <p>${brideName} and ${groomName} were married Saturday evening at ${venue}. ${officiant} officiated.</p>
 
-<p>${includeBrideTitle ? brideTitle + " " : ""}${brideName}, ${brideAge}, who is keeping her name, is a ${brideJob}. She ${brideGradText} and received ${bridePostGrad}.</p>
+<p>${includeBrideTitle && brideTitle ? brideTitle + " " : ""}${brideName}, ${brideAge}, who is keeping her name, is a ${brideJob}. She ${enhancedBrideEducation}.</p>
 
-<p>She is a daughter of ${brideMum} and ${brideDad} of ${bridePlace}, ${bstate}. Her mother is a ${brideMotherJob} and her father is a ${brideFatherJob}.</p>
+<p>She is a daughter of Mrs. ${brideMum} and ${brideDad} of ${bridePlace}, ${bstate}. Her mother is a ${brideMotherJob} and her father is a ${brideFatherJob}.</p>
     
-<p>${includeGroomTitle ? groomTitle + " " : ""}${groomName}, also ${groomAge}, is a ${groomJob}. He ${groomGradText}${includeGroomPostGrad ? ` and received ${groomPostGrad}` : ""}.</p>
+<p>${includeGroomTitle && groomTitle ? groomTitle + " " : ""}${groomName}, also ${groomAge}, is a ${groomJob}. He ${enhancedGroomEducation}.</p>
     
-<p>He is a son of ${groomMum} and ${groomDad} of ${groomPlace}, ${gstate}. His father is a ${groomFatherJob} and his mother is a ${groomMotherJob}.</p>
+<p>He is a son of Mrs. ${groomMum} and ${groomDad} of ${groomPlace}, ${gstate}. His father is a ${groomFatherJob} and his mother is a ${groomMotherJob}.</p>
     
-<p>The couple first met ${wherePlace} in ${whereLocation}. ${meetingStory} They have been together since 2019.</p>
-</div>
-`;
-  }
+<p>${narrativeMeetingStory} They have been together since ${titleAndNarrative.narrative.careerFocus ? '2019' : '2020'}.</p>
+</div>`,
 
-  function template3() {
-    return `
-<div id="results">
-<h2>${brideName}, ${groomName}</h2>
+    // Evening announcement with narrative context
+    `<div id="results">
+<h2>${titleAndNarrative.title}</h2>
 
 <p>${brideName} and ${groomName} were married Friday evening at ${venue}. ${officiant} officiated.</p>
 
-<p>${includeBrideTitle ? brideTitle + " " : "Ms. "}${brideName}, ${brideAge}, is a ${brideJob}. She ${brideGradText} and received ${bridePostGrad}.${includeBrideFormer ? ` She was previously a ${brideFormerJob}.` : ""}</p>
+<p>${includeBrideTitle && brideTitle ? brideTitle + " " : "Ms. "}${brideName}, ${brideAge}, is a ${brideJob}. She ${enhancedBrideEducation}.${includeBrideFormer && !titleAndNarrative.narrative.careerFocus ? ` She was previously a ${brideFormerJob}.` : ""}</p>
 
-<p>She is the daughter of ${brideMum} and ${brideDad} of ${bridePlace}, ${bstate}. Her mother is a ${brideMotherJob} and her father is a ${brideFatherJob}.</p>
+<p>She is the daughter of Mrs. ${brideMum} and ${brideDad} of ${bridePlace}, ${bstate}. Her mother is a ${brideMotherJob} and her father is a ${brideFatherJob}.</p>
     
-<p>${includeGroomTitle ? groomTitle + " " : "Mr. "}${groomName}, ${groomAge}, is a ${groomJob}. He ${groomGradText}.</p>
+<p>${includeGroomTitle && groomTitle ? groomTitle + " " : "Mr. "}${groomName}, ${groomAge}, is a ${groomJob}. He ${groomGradText}.</p>
     
-<p>He is the son of ${groomMum} and ${groomDad} of ${groomPlace}, ${gstate}. His mother is a ${groomMotherJob} and his father is a ${groomFatherJob}.</p>
+<p>He is the son of Mrs. ${groomMum} and ${groomDad} of ${groomPlace}, ${gstate}. His mother is a ${groomMotherJob} and his father is a ${groomFatherJob}.</p>
     
-<p>The couple met ${wherePlace} in ${whereLocation} in 2018. ${meetingStory}</p>
-</div>
-`;
-  }
+<p>${narrativeMeetingStory}</p>
+</div>`
+  ];
 
-  // Randomly select one of the three templates
-  const templates = [template1, template2, template3];
-  const selectedTemplate = templates[Math.floor(Math.random() * templates.length)];
-  
-  return selectedTemplate();
+  // Use RiTa's random selection to choose template
+  return selectRandom(templates);
 }
 
 app.disable("etag");

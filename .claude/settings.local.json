@@ -10,7 +10,10 @@
       "Bash(npm start)",
       "Bash(grep:*)",
       "Bash(timeout 3s npm start)",
-      "Bash(true)"
+      "Bash(true)",
+      "Bash(npm install:*)",
+      "Bash(npm view:*)",
+      "Bash(rg:*)"
     ],
     "deny": []
   }
