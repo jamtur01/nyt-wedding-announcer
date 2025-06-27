@@ -1,10 +1,7 @@
-/* global tracery */
-
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 
-var tracery = require("tracery-grammar");
 var faker = require("faker");
 var Fakerator = require("fakerator");
 var fakerator = Fakerator();
@@ -739,123 +736,72 @@ function generate() {
     groomGrad
   );
 
-  // This is the Tracery grammar.
-  let notes = {
-    bride: [brideName],
-    groom: [groomName],
-    brideage: [brideAge],
-    groomage: [groomAge],
-    venue: [venue],
-    state: [state],
-    bstate: [bstate],
-    gstate: [gstate],
-    officiant: [officiant],
-    bridejob: [brideJob],
-    bridplace: [bridePlace],
-    brideformer: [brideFormerJob],
-    bridegrad: [brideGrad],
-    bridegrad2: [brideGrad2],
-    bridepostgrad: [bridePostGrad],
-    bridegradtext: [brideGradText],
-    groomgradtext: [groomGradText],
-    bridetitle: [brideTitle],
-    bridemum: [brideMum],
-    bridedad: [brideDad],
-    brideplace: [bridePlace],
-    bridefatherjob: [brideFatherJob],
-    bridemotherjob: [brideMotherJob],
-    groomjob: [groomJob],
-    groomgrad: [groomGrad],
-    groomhonor: [groomHonor],
-    groompostgrad: [groomPostGrad],
-    groomtitle: [groomTitle],
-    groommum: [groomMum],
-    groomdad: [groomDad],
-    groomplace: [groomPlace],
-    groommotherjob: [groomMotherJob],
-    groomfatherjob: [groomFatherJob],
-    whereplace: [wherePlace],
-    wherelocation: [whereLocation],
-    meetingstory: [meetingStory],
-    storytitle: [storyTitle],
-    origin: [
-      `
+  // Template literal functions
+  function template1() {
+    return `
 <div id="results">
-<h2>#bride#, #groom#</h2>
+<h2>${brideName}, ${groomName}</h2>
 
-<p>#bride# and #groom# were married Saturday at #venue#. #officiant# officiated.</p>
+<p>${brideName} and ${groomName} were married Saturday at ${venue}. ${officiant} officiated.</p>
 
-<p>${
-        includeBrideTitle ? "#bridetitle# " : ""
-      }#bride#, #brideage#, is a #bridejob#. She #bridegradtext# and received #bridepostgrad#.${
-        includeBrideFormer ? " She was previously a #brideformer#." : ""
-      }</p>
+<p>${includeBrideTitle ? brideTitle + " " : ""}${brideName}, ${brideAge}, is a ${brideJob}. She ${brideGradText} and received ${bridePostGrad}.${includeBrideFormer ? ` She was previously a ${brideFormerJob}.` : ""}</p>
 
-<p>She is a daughter of #bridemum# and #bridedad# of #brideplace#, #bstate#. Her father is a #bridefatherjob# and her mother is a #bridemotherjob#.</p>
+<p>She is a daughter of ${brideMum} and ${brideDad} of ${bridePlace}, ${bstate}. Her father is a ${brideFatherJob} and her mother is a ${brideMotherJob}.</p>
     
-<p>${
-        includeGroomTitle ? "#groomtitle# " : ""
-      }#groom#, #groomage#, is a #groomjob#. He #groomgradtext#${
-        includeGroomPostGrad ? " and received #groompostgrad#" : ""
-      }.</p>
+<p>${includeGroomTitle ? groomTitle + " " : ""}${groomName}, ${groomAge}, is a ${groomJob}. He ${groomGradText}${includeGroomPostGrad ? ` and received ${groomPostGrad}` : ""}.</p>
     
-<p>He is a son of #groommum# and #groomdad# of #groomplace#, #gstate#. His mother is a #groommotherjob# and his father is a #groomfatherjob#.</p>
+<p>He is a son of ${groomMum} and ${groomDad} of ${groomPlace}, ${gstate}. His mother is a ${groomMotherJob} and his father is a ${groomFatherJob}.</p>
     
-<p>The couple met #whereplace# in #wherelocation#. #meetingstory#</p>
+<p>The couple met ${wherePlace} in ${whereLocation}. ${meetingStory}</p>
 </div>
-`,
-      `
+`;
+  }
+
+  function template2() {
+    return `
 <div id="results">
-<h2>#storytitle#: #bride# and #groom#</h2>
+<h2>${storyTitle}: ${brideName} and ${groomName}</h2>
 
-<p>#bride# and #groom# were married Saturday evening at #venue#. #officiant# officiated.</p>
+<p>${brideName} and ${groomName} were married Saturday evening at ${venue}. ${officiant} officiated.</p>
 
-<p>${
-        includeBrideTitle ? "#bridetitle# " : ""
-      }#bride#, #brideage#, who is keeping her name, is a #bridejob#. She #bridegradtext# and received #bridepostgrad#.</p>
+<p>${includeBrideTitle ? brideTitle + " " : ""}${brideName}, ${brideAge}, who is keeping her name, is a ${brideJob}. She ${brideGradText} and received ${bridePostGrad}.</p>
 
-<p>She is a daughter of #bridemum# and #bridedad# of #brideplace#, #bstate#. Her mother is a #bridemotherjob# and her father is a #bridefatherjob#.</p>
+<p>She is a daughter of ${brideMum} and ${brideDad} of ${bridePlace}, ${bstate}. Her mother is a ${brideMotherJob} and her father is a ${brideFatherJob}.</p>
     
-<p>${
-        includeGroomTitle ? "#groomtitle# " : ""
-      }#groom#, also #groomage#, is a #groomjob#. He #groomgradtext#${
-        includeGroomPostGrad ? " and received #groompostgrad#" : ""
-      }.</p>
+<p>${includeGroomTitle ? groomTitle + " " : ""}${groomName}, also ${groomAge}, is a ${groomJob}. He ${groomGradText}${includeGroomPostGrad ? ` and received ${groomPostGrad}` : ""}.</p>
     
-<p>He is a son of #groommum# and #groomdad# of #groomplace#, #gstate#. His father is a #groomfatherjob# and his mother is a #groommotherjob#.</p>
+<p>He is a son of ${groomMum} and ${groomDad} of ${groomPlace}, ${gstate}. His father is a ${groomFatherJob} and his mother is a ${groomMotherJob}.</p>
     
-<p>The couple first met #whereplace# in #wherelocation#. #meetingstory# They have been together since 2019.</p>
+<p>The couple first met ${wherePlace} in ${whereLocation}. ${meetingStory} They have been together since 2019.</p>
 </div>
-`,
-      `
+`;
+  }
+
+  function template3() {
+    return `
 <div id="results">
-<h2>#bride#, #groom#</h2>
+<h2>${brideName}, ${groomName}</h2>
 
-<p>#bride# and #groom# were married Friday evening at #venue#. #officiant# officiated.</p>
+<p>${brideName} and ${groomName} were married Friday evening at ${venue}. ${officiant} officiated.</p>
 
-<p>${
-        includeBrideTitle ? "#bridetitle# " : "Ms. "
-      }#bride#, #brideage#, is a #bridejob#. She #bridegradtext# and received #bridepostgrad#.${
-        includeBrideFormer ? " She was previously a #brideformer#." : ""
-      }</p>
+<p>${includeBrideTitle ? brideTitle + " " : "Ms. "}${brideName}, ${brideAge}, is a ${brideJob}. She ${brideGradText} and received ${bridePostGrad}.${includeBrideFormer ? ` She was previously a ${brideFormerJob}.` : ""}</p>
 
-<p>She is the daughter of #bridemum# and #bridedad# of #brideplace#, #bstate#. Her mother is a #bridemotherjob# and her father is a #bridefatherjob#.</p>
+<p>She is the daughter of ${brideMum} and ${brideDad} of ${bridePlace}, ${bstate}. Her mother is a ${brideMotherJob} and her father is a ${brideFatherJob}.</p>
     
-<p>${
-        includeGroomTitle ? "#groomtitle# " : "Mr. "
-      }#groom#, #groomage#, is a #groomjob#. He #groomgradtext#.</p>
+<p>${includeGroomTitle ? groomTitle + " " : "Mr. "}${groomName}, ${groomAge}, is a ${groomJob}. He ${groomGradText}.</p>
     
-<p>He is the son of #groommum# and #groomdad# of #groomplace#, #gstate#. His mother is a #groommotherjob# and his father is a #groomfatherjob#.</p>
+<p>He is the son of ${groomMum} and ${groomDad} of ${groomPlace}, ${gstate}. His mother is a ${groomMotherJob} and his father is a ${groomFatherJob}.</p>
     
-<p>The couple met #whereplace# in #wherelocation# in 2018. #meetingstory#</p>
+<p>The couple met ${wherePlace} in ${whereLocation} in 2018. ${meetingStory}</p>
 </div>
-`,
-    ],
-  };
+`;
+  }
 
-  var AnnounceGrammar = tracery.createGrammar(notes);
-  var results = AnnounceGrammar.flatten("#origin#");
-  return results;
+  // Randomly select one of the three templates
+  const templates = [template1, template2, template3];
+  const selectedTemplate = templates[Math.floor(Math.random() * templates.length)];
+  
+  return selectedTemplate();
 }
 
 app.disable("etag");

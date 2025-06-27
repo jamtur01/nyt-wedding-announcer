@@ -237,6 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Add some fun console messages
 console.log('🎩 NYT Wedding Announcer loaded successfully!');
-console.log('💼 Featuring 130+ prestigious careers and fake elite universities');
+console.log('💼 Featuring 135+ prestigious careers and fake elite universities');
 console.log('🎓 Including Rhodes Scholars, Harvard Law graduates, and Goldman Sachs partners');
+console.log('🦷 Smart title matching: DDS for dentists, Dr. for physicians and PhDs');
 console.log('💍 Press Space or Enter to generate, or click the button');

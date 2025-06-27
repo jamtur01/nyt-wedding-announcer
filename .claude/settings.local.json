@@ -7,7 +7,10 @@
       "Bash(node server.js)",
       "Bash(node:*)",
       "Bash(curl:*)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(grep:*)",
+      "Bash(timeout 3s npm start)",
+      "Bash(true)"
     ],
     "deny": []
   }
